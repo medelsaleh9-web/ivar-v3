@@ -1,5 +1,4 @@
 const fs = require("fs-extra");
-const request = require("request");
 const path = require("path");
 
 module.exports.config = {
@@ -10,30 +9,19 @@ module.exports.config = {
   description: "رسالة وداع مع صورة عند خروج أحد"
 };
 
-const CHROLLO_IMG = "https://i.imgur.com/8VEmBaT.jpeg";
+const LOCAL_IMG = path.join(__dirname, "../commands/cache/crowley.jpg");
 
 async function sendWithImage(api, threadID, body) {
-    const tmpPath = path.join(__dirname, `../commands/cache/chrollo_leave_${Date.now()}.jpg`);
     return new Promise((resolve) => {
-        request(CHROLLO_IMG)
-            .pipe(fs.createWriteStream(tmpPath))
-            .on("close", () => {
-                api.sendMessage(
-                    { body, attachment: fs.createReadStream(tmpPath) },
-                    threadID,
-                    () => {
-                        try { fs.unlinkSync(tmpPath); } catch {}
-                        resolve();
-                    }
-                );
-            })
-            .on("error", () => {
-                api.sendMessage({ body }, threadID, () => resolve());
-            });
+        api.sendMessage(
+            { body, attachment: fs.createReadStream(LOCAL_IMG) },
+            threadID,
+            () => resolve()
+        );
     });
 }
 
-module.exports.run = async function ({ api, event, Users }) {
+module.exports.run = async function ({ api, event }) {
     if (event.logMessageData.leftParticipantFbId == api.getCurrentUserID()) return;
 
     const threadID = event.threadID;
