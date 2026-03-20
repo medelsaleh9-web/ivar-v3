@@ -27,7 +27,14 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
  return api.sendMessage("Admin bot mới dùng bot trong đoạn chat riêng!!", threadID, messageID)
 }    
    if (!ADMINBOT.includes(senderID) && adminbot.adminOnly == true) {
-     if (!ADMINBOT.includes(senderID) && adminbot.adminOnly == true) return api.sendMessage('Admin bot mới sử dụng được!!', threadID, messageID)
+     let threadUnlocked = false;
+     try {
+       const _msp = require('path').join(__dirname, '../../modules/commands/data/malakState.json');
+       let _ms = {};
+       try { _ms = JSON.parse(require('fs').readFileSync(_msp, 'utf-8')); } catch {}
+       if (_ms.openThreads && _ms.openThreads[threadID]) threadUnlocked = true;
+     } catch {}
+     if (!threadUnlocked) return;
    }
     if (!NDH.includes(senderID) && !ADMINBOT.includes(senderID) && adminbot.ndhOnly == true) { 
          return api.sendMessage('NDH mới có thể sử dụng bot', threadID, messageID)
@@ -38,7 +45,7 @@ const dataAdbox = require('./../../modules/commands/cache/data.json');
    const findd = threadInf.adminIDs.find(el => el.id == senderID);
   if (dataAdbox.adminbox.hasOwnProperty(threadID) && dataAdbox.adminbox[threadID] == true && !ADMINBOT.includes(senderID) && !findd && event.isGroup == true && !NDH.includes(senderID) && !findd && event.isGroup == true) return api.sendMessage('Quản trị viên mới sử dụng được!!', event.threadID, event.messageID)
   
-  // === فحص القفل (Lock Check) ===
+  // === فحص القفل والحظر (Lock & Ban Check) ===
   try {
     const malakStatePath = require('path').join(__dirname, '../../modules/commands/data/malakState.json');
     let malakState = {};
@@ -49,6 +56,9 @@ const dataAdbox = require('./../../modules/commands/cache/data.json');
       if (!ADMINBOT.includes(senderID) && !botAdminsForThread.includes(senderID) && !isGroupAdmin) {
         return;
       }
+    }
+    if (malakState.bannedUsers && malakState.bannedUsers[threadID] && malakState.bannedUsers[threadID].includes(senderID)) {
+      if (!ADMINBOT.includes(senderID)) return;
     }
   } catch (lockErr) {}
    if (userBanned.has(senderID) || threadBanned.has(threadID) || allowInbox == ![] && senderID == threadID) {
