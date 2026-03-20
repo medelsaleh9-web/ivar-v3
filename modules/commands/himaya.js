@@ -13,10 +13,10 @@ function saveState(state) {
 
 module.exports.config = {
   name: "حماية",
-  version: "1.0.0",
-  hasPermssion: 1,
+  version: "2.0.0",
+  hasPermssion: 2,
   credits: "سونغ",
-  description: "تفعيل/إيقاف حماية الكنيات في الكروب",
+  description: "تفعيل/إيقاف حماية الكنيات — لا يستطيع أحد تغييرها إلا ادمن البوت",
   commandCategory: "الملاك",
   usages: "حماية تشغيل | حماية ايقاف",
   cooldowns: 3
@@ -31,7 +31,15 @@ module.exports.run = async function ({ api, event, args }) {
   if (sub === "تشغيل") {
     state.nicknameProtection[threadID] = true;
     saveState(state);
-    return api.sendMessage("🛡️ تم تفعيل حماية الكنيات\nأي شخص يغير كنية أحد سيتم التراجع عنها تلقائياً", threadID, messageID);
+    return api.sendMessage(
+      `🛡️ تم تفعيل حماية الكنيات\n` +
+      `━━━━━━━━━━━━━━━\n` +
+      `❌ لا يستطيع أي شخص تغيير الكنيات\n` +
+      `✅ فقط ادمن البوت يملك هذه الصلاحية\n` +
+      `🔄 أي تغيير سيُلغى تلقائياً`,
+      threadID,
+      messageID
+    );
   }
 
   if (sub === "ايقاف") {
@@ -42,7 +50,10 @@ module.exports.run = async function ({ api, event, args }) {
 
   const isActive = !!state.nicknameProtection[threadID];
   return api.sendMessage(
-    `🛡️ حماية الكنيات: ${isActive ? "✅ مفعّلة" : "❌ موقفة"}\n\nاكتب:\nحماية تشغيل — لتفعيل الحماية\nحماية ايقاف — لإيقاف الحماية`,
+    `🛡️ حماية الكنيات: ${isActive ? "✅ مفعّلة" : "❌ موقفة"}\n\n` +
+    `اكتب:\n` +
+    `"حماية تشغيل — تفعيل الحماية\n` +
+    `"حماية ايقاف — إيقاف الحماية`,
     threadID,
     messageID
   );

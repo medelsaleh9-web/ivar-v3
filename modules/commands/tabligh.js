@@ -1,9 +1,9 @@
 module.exports.config = {
   name: "تبليغ",
-  version: "2.0.0",
+  version: "3.0.0",
   hasPermssion: 0,
   credits: "سونغ",
-  description: "يبلغ على عضو أو رسالة عند الرد عليها",
+  description: "يبلغ على عضو عند الرد على رسالته",
   commandCategory: "الملاك",
   usages: "تبليغ (رد على رسالة)",
   cooldowns: 5
@@ -17,12 +17,8 @@ module.exports.run = async function ({ api, event }) {
   }
 
   const targetID = messageReply.senderID;
-  const targetMsgID = messageReply.messageID;
 
   try {
-    const threadInfo = await api.getThreadInfo(threadID);
-    const admins = threadInfo.adminIDs.map(a => a.uid);
-
     let targetName = targetID;
     try {
       const userInfo = await api.getUserInfo(targetID);
@@ -35,20 +31,16 @@ module.exports.run = async function ({ api, event }) {
       reporterName = repInfo[senderID]?.name || senderID;
     } catch {}
 
-    await api.unsendMessage(targetMsgID).catch(() => {});
+    const alertMsg =
+      `🚨 تبليغ جديد 🚨\n` +
+      `━━━━━━━━━━━━━━━\n` +
+      `👤 المُبلَّغ عنه: ${targetName}\n` +
+      `📢 المُبلِّغ: ${reporterName}\n` +
+      `━━━━━━━━━━━━━━━\n` +
+      `⚠️ يرجى مراجعة الرسالة المبلَّغ عنها`;
 
-    const alertMsg = `🚨 تبليغ جديد 🚨\n\n👤 المُبلَّغ عنه: ${targetName}\n📢 المُبلِّغ: ${reporterName}\n\n✅ تم حذف الرسالة المبلَّغ عنها`;
-
-    for (const adminID of admins) {
-      api.sendMessage(alertMsg, adminID).catch(() => {});
-    }
-
-    return api.sendMessage(
-      `✅ تم التبليغ على ${targetName} وإبلاغ إداريي الكروب`,
-      threadID,
-      messageID
-    );
+    return api.sendMessage(alertMsg, threadID, messageID);
   } catch (err) {
-    return api.sendMessage("❌ فشل التبليغ، تأكد أن البوت أدمن في الكروب", threadID, messageID);
+    return api.sendMessage("❌ فشل التبليغ، حاول مرة أخرى", threadID, messageID);
   }
 };

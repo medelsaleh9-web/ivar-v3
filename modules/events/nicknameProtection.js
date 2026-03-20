@@ -5,9 +5,9 @@ const STATE_PATH = path.join(__dirname, "../commands/data/malakState.json");
 module.exports.config = {
   name: "nicknameProtection",
   eventType: ["log:user-nickname"],
-  version: "1.0.0",
+  version: "2.0.0",
   credits: "سونغ",
-  description: "حماية الكنيات من التغيير"
+  description: "حماية الكنيات من التغيير — لا يمكن لأحد تغييرها إلا ادمن البوت"
 };
 
 module.exports.run = async function ({ api, event }) {
@@ -21,23 +21,17 @@ module.exports.run = async function ({ api, event }) {
   if (!state.nicknameProtection || !state.nicknameProtection[threadID]) return;
 
   const { ADMINBOT } = global.config || {};
-  const admins = Array.isArray(ADMINBOT) ? ADMINBOT : [];
+  const botAdmins = Array.isArray(ADMINBOT) ? ADMINBOT : [];
 
-  const botAdmins = (state.botAdmins && state.botAdmins[threadID]) || [];
+  if (botAdmins.includes(author) || author === botID) return;
 
-  if (admins.includes(author) || botAdmins.includes(author) || author === botID) return;
-
-  let isGroupAdmin = false;
-  try {
-    const info = await api.getThreadInfo(threadID);
-    isGroupAdmin = info.adminIDs.some(a => a.uid === author);
-  } catch {}
-
-  if (isGroupAdmin) return;
-
-  const targetID = logMessageData.participant_id;
-  const oldNickname = logMessageData.nickname || "";
+  const targetID = logMessageData?.participant_id;
+  if (!targetID) return;
 
   await api.changeNickname("", threadID, targetID).catch(() => {});
-  api.sendMessage(`🛡️ الحماية مفعّلة — لا يمكن تغيير الكنيات`, threadID);
+
+  api.sendMessage(
+    `🛡️ الحماية مفعّلة — لا يملك أحد صلاحية تغيير الكنيات\nفقط ادمن البوت يستطيع ذلك`,
+    threadID
+  );
 };
