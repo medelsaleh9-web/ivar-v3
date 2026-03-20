@@ -1,25 +1,16 @@
 module.exports.config = {
-  name: "ازالة",
+  name: "OPL",
   version: "1.0.0",
   hasPermssion: 1,
   credits: "سونغ",
   description: "إزالة كنيات جميع أعضاء الكروب",
   commandCategory: "الملاك",
-  usages: "ازالة كنيات",
+  usages: "OPL",
   cooldowns: 5
 };
 
-module.exports.run = async function ({ api, event, args }) {
+module.exports.run = async function ({ api, event }) {
   const { threadID, messageID } = event;
-  const sub = args[0];
-
-  if (sub !== "كنيات") {
-    return api.sendMessage(
-      `📋 استخدام الأمر:\n"ازالة كنيات — إزالة كنيات جميع الأعضاء`,
-      threadID,
-      messageID
-    );
-  }
 
   function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));

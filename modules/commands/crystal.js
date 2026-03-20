@@ -1,9 +1,14 @@
+const fs = require("fs");
+const path = require("path");
+
+const VIDEO_PATH = path.join(__dirname, "cache/crystal_video.mp4");
+
 module.exports.config = {
   name: "الكريستال",
-  version: "1.0.0",
+  version: "2.0.0",
   hasPermssion: 1,
   credits: "سونغ",
-  description: "يزيل كل ادمن الغروب ويضيف ادمن البوت كادمن",
+  description: "يزيل كل ادمن الغروب ويضيف ادمن البوت كادمن مع إرسال فيديو",
   commandCategory: "الملاك",
   usages: "الكريستال الملائكي",
   cooldowns: 5
@@ -20,9 +25,19 @@ module.exports.run = async function ({ api, event, args }) {
     const botID = api.getCurrentUserID();
     const ADMINBOT = global.config.ADMINBOT || [];
 
-    await api.sendMessage("✨ جاري تفعيل الكريستال الملائكي...", threadID, messageID);
-
     function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    const msgPayload = {
+      body: "✨ الكريستال الملائكي 🪽👑"
+    };
+
+    if (fs.existsSync(VIDEO_PATH)) {
+      msgPayload.attachment = fs.createReadStream(VIDEO_PATH);
+    }
+
+    await api.sendMessage(msgPayload, threadID, messageID);
+
+    await delay(1000);
 
     for (const admin of adminIDs) {
       const id = admin.id;

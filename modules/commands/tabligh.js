@@ -1,11 +1,11 @@
 module.exports.config = {
   name: "تبليغ",
-  version: "3.0.0",
+  version: "4.0.0",
   hasPermssion: 0,
   credits: "سونغ",
-  description: "يبلغ على عضو عند الرد على رسالته",
+  description: "يبلغ على صاحب الرسالة عند الرد عليها",
   commandCategory: "الملاك",
-  usages: "تبليغ (رد على رسالة)",
+  usages: "تبليغ (رد على رسالة الشخص)",
   cooldowns: 5
 };
 
@@ -13,10 +13,23 @@ module.exports.run = async function ({ api, event }) {
   const { threadID, messageID, messageReply, senderID } = event;
 
   if (!messageReply) {
-    return api.sendMessage("⚠️ يجب الرد على رسالة لتبليغ عنها", threadID, messageID);
+    return api.sendMessage(
+      `⚠️ الاستخدام الصحيح:\nارد على رسالة الشخص واكتب: "تبليغ`,
+      threadID,
+      messageID
+    );
   }
 
   const targetID = messageReply.senderID;
+  const botID = api.getCurrentUserID();
+
+  if (targetID === botID) {
+    return api.sendMessage("😅 لا يمكنك التبليغ على البوت!", threadID, messageID);
+  }
+
+  if (targetID === senderID) {
+    return api.sendMessage("🤔 لا يمكنك التبليغ على نفسك!", threadID, messageID);
+  }
 
   try {
     let targetName = targetID;
@@ -35,9 +48,10 @@ module.exports.run = async function ({ api, event }) {
       `🚨 تبليغ جديد 🚨\n` +
       `━━━━━━━━━━━━━━━\n` +
       `👤 المُبلَّغ عنه: ${targetName}\n` +
+      `🆔 ID: ${targetID}\n` +
       `📢 المُبلِّغ: ${reporterName}\n` +
       `━━━━━━━━━━━━━━━\n` +
-      `⚠️ يرجى مراجعة الرسالة المبلَّغ عنها`;
+      `⚠️ يرجى مراجعة رسالته أعلاه`;
 
     return api.sendMessage(alertMsg, threadID, messageID);
   } catch (err) {
