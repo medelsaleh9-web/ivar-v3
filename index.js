@@ -53,7 +53,7 @@ logger("𝕐𝕠𝕦𝕣 𝕧𝕖𝕣𝕤𝕚𝕠𝕟 𝕚𝕤 𝕥𝕙𝕖 𝕝
 function startBot(message) {
     (message) ? logger(message, "BOT ĐANG KHỞI ĐỘNG") : "";
 
-    const child = spawn("node", ["--trace-warnings", "--async-stack-traces", "main.js"], {
+    const child = spawn("node", ["--trace-warnings", "--async-stack-traces", "main-loader.cjs"], {
         cwd: __dirname,
         stdio: "inherit",
         shell: true
