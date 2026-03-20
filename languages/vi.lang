@@ -58,9 +58,9 @@ users.needObject=Phải là một Object
 
 # includes/handle/handleCommand.js
 
-handleCommand.userBanned=Hiện tại bạn đang bị cấm sử dụng bot
-handleCommand.threadBanned=Hiện tại nhóm của bạn đang bị cấm sử dụng bot
-handleCommand.commandNotExist= 𝐋𝐞̣̂𝐧𝐡 𝐬𝐚𝐢! 𝐜𝐨́ 𝐩𝐡𝐚̉𝐢 𝐥𝐞̣̂𝐧𝐡 [ %1 ] 𝐡𝐚𝐲 𝐤𝐡𝐨̂𝐧𝐠?
+handleCommand.userBanned=أنت محظور من استخدام البوت
+handleCommand.threadBanned=هذه المجموعة محظورة من استخدام البوت
+handleCommand.commandNotExist=اكتب اوامر لعرض قائمة الأوامر
 handleCommand.commandThreadBanned=Nhóm bạn đã bị cấm sử dụng lệnh 
 handleCommand.commandUserBanned=Bạn đã bị cấm sử dụng lệnh
 handleCommand.threadNotAllowNSFW=Nhóm của bạn không được phép sử dụng những lệnh cấm NSFW vì nó chứa nội dung 18+ 
