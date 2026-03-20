@@ -4,7 +4,7 @@ const path = require("path");
 module.exports.config = {
     name: "joinNoti",
     eventType: ["log:subscribe"],
-    version: "4.0.0",
+    version: "5.0.0",
     credits: "سونغ",
     description: "رسالة ترحيب مع صورة عند دخول أحد، وتفعيل الملاك عند إضافته"
 };
@@ -31,9 +31,9 @@ module.exports.run = async function ({ api, event, Users }) {
     const botAdded = logMessageData.addedParticipants.some(p => p.userFbId == botID);
 
     if (botAdded) {
-        await api.changeNickname(`[الملاك • 👑🪽]`, threadID, botID).catch(() => {});
+        await api.changeNickname(`[👑]  • الملاك الكريستالي`, threadID, botID).catch(() => {});
         return api.sendMessage(
-            `💎👑 تم تفعيل الملاك الكريستالي الازرق\n` +
+            `💎👑 تم تفعيل الملاك الكريستالي\n` +
             `━━━━━━━━━━━━━━━\n` +
             `🤖 البوت: الملاك\n` +
             `👨‍💻 المطور: سونغ\n` +
