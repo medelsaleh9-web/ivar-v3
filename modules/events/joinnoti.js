@@ -1,10 +1,29 @@
+const fs = require("fs-extra");
+const path = require("path");
+
 module.exports.config = {
     name: "joinNoti",
     eventType: ["log:subscribe"],
-    version: "3.0.0",
+    version: "4.0.0",
     credits: "سونغ",
-    description: "رسالة ترحيب عند دخول أحد، وتفعيل الملاك عند إضافته"
+    description: "رسالة ترحيب مع صورة عند دخول أحد، وتفعيل الملاك عند إضافته"
 };
+
+const EVENT_IMG = path.join(__dirname, "../commands/cache/malak_event.jpg");
+
+async function sendWithImage(api, threadID, body) {
+    return new Promise((resolve) => {
+        if (fs.existsSync(EVENT_IMG)) {
+            api.sendMessage(
+                { body, attachment: fs.createReadStream(EVENT_IMG) },
+                threadID,
+                () => resolve()
+            );
+        } else {
+            api.sendMessage(body, threadID, () => resolve());
+        }
+    });
+}
 
 module.exports.run = async function ({ api, event, Users }) {
     const { threadID, logMessageData } = event;
@@ -42,13 +61,13 @@ module.exports.run = async function ({ api, event, Users }) {
     let threadInfo;
     try { threadInfo = await api.getThreadInfo(threadID); } catch { return; }
 
-    return api.sendMessage(
+    const body =
         `╔══════════════════╗\n` +
         `   👑 مرحباً يا ${nameArray.join(", ")} 🪽\n` +
         `╚══════════════════╝\n\n` +
         `أهلاً وسهلاً بك في: ${threadInfo.threadName || "الكروب"}\n` +
         `أنت العضو رقم: ${threadInfo.participantIDs.length}\n\n` +
-        `👑🪽 الملاك يرحب بك`,
-        threadID
-    );
+        `👑🪽 الملاك يرحب بك`;
+
+    return sendWithImage(api, threadID, body);
 };

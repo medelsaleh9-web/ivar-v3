@@ -2,22 +2,26 @@ const fs = require("fs-extra");
 const path = require("path");
 
 module.exports.config = {
-  name: "leaveNoti",
-  eventType: ["log:unsubscribe"],
-  version: "2.0.0",
-  credits: "سونغ",
-  description: "رسالة وداع مع صورة عند خروج أحد"
+    name: "leaveNoti",
+    eventType: ["log:unsubscribe"],
+    version: "3.0.0",
+    credits: "سونغ",
+    description: "رسالة وداع مع صورة عند خروج أو طرد أحد"
 };
 
-const LOCAL_IMG = path.join(__dirname, "../commands/cache/crowley.jpg");
+const EVENT_IMG = path.join(__dirname, "../commands/cache/malak_event.jpg");
 
 async function sendWithImage(api, threadID, body) {
     return new Promise((resolve) => {
-        api.sendMessage(
-            { body, attachment: fs.createReadStream(LOCAL_IMG) },
-            threadID,
-            () => resolve()
-        );
+        if (fs.existsSync(EVENT_IMG)) {
+            api.sendMessage(
+                { body, attachment: fs.createReadStream(EVENT_IMG) },
+                threadID,
+                () => resolve()
+            );
+        } else {
+            api.sendMessage(body, threadID, () => resolve());
+        }
     });
 }
 
@@ -27,14 +31,14 @@ module.exports.run = async function ({ api, event }) {
     const threadID = event.threadID;
     const iduser = event.logMessageData.leftParticipantFbId;
     const name = (global.data && global.data.userName && global.data.userName.get(iduser)) || iduser;
-    const type = (event.author == iduser) ? "غادر الكروب" : "تم طرده من الكروب";
+    const type = (event.author == iduser) ? "غادر الكروب بإرادته" : "تم طرده من الكروب";
 
-    const body = `╔══════════════════╗
-   👋 وداعاً ${name}
-╚══════════════════╝
+    const body =
+        `╔══════════════════╗\n` +
+        `   👋 وداعاً ${name}\n` +
+        `╚══════════════════╝\n\n` +
+        `${name} ${type} 💔\n` +
+        `👑🪽 الملاك`;
 
-${name} ${type} 💔
-👑🪽 الملاك`;
-
-    await sendWithImage(api, threadID, body);
+    return sendWithImage(api, threadID, body);
 };

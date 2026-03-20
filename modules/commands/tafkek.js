@@ -1,4 +1,5 @@
 if (!global.malakGames) global.malakGames = {};
+const { addPoints } = require('./data/points_helper');
 
 const arabicWords = [
   "قمر", "نور", "بحر", "جبل", "زهرة", "سماء", "نجمة", "شمس", "ماء",
@@ -9,10 +10,10 @@ const arabicWords = [
 
 module.exports.config = {
   name: "تفكيك",
-  version: "1.0.0",
+  version: "2.0.0",
   hasPermssion: 0,
   credits: "سونغ",
-  description: "لعبة تفكيك الكلمة — فكك الكلمة لحروف منفصلة",
+  description: "لعبة تفكيك الكلمة — فكك الكلمة لحروف منفصلة، الفائز يحصل على نقطة",
   commandCategory: "الملاك",
   usages: "تفكيك",
   cooldowns: 5
@@ -49,7 +50,8 @@ module.exports.run = async function ({ api, event }) {
     `🔤 فكك هذه الكلمة لحروف منفصلة:\n\n` +
     `  ${word}\n\n` +
     `💡 مثال: إذا كانت الكلمة قمر اكتب: ق م ر\n` +
-    `⏰ لديك 60 ثانية للإجابة!`,
+    `⏰ لديك 60 ثانية للإجابة!\n` +
+    `🏅 الفائز يحصل على نقطة!`,
     threadID,
     messageID
   );
@@ -71,11 +73,14 @@ module.exports.handleEvent = async function ({ api, event }) {
       winnerName = info[senderID]?.name || senderID;
     } catch {}
 
+    const newPoints = addPoints(senderID, 1);
+
     return api.sendMessage(
       `🏆 انت الفائز!\n` +
       `━━━━━━━━━━━━━━━\n` +
       `👑 ${winnerName}\n` +
-      `✅ الإجابة الصحيحة: ${game.answer}`,
+      `✅ الإجابة الصحيحة: ${game.answer}\n` +
+      `🏅 +1 نقطة! مجموعك: ${newPoints} نقطة`,
       threadID,
       messageID
     );

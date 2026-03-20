@@ -1,16 +1,33 @@
 module.exports.config = {
   name: "تدمير",
-  version: "1.0.0",
+  version: "2.0.0",
   hasPermssion: 1,
   credits: "سونغ",
-  description: "إزالة كل أعضاء الكروب عدا الادمن",
+  description: "تدمير: طرد كل الأعضاء | تدمير النضام: إيقاف البوت",
   commandCategory: "الملاك",
-  usages: "تدمير",
+  usages: "تدمير | تدمير النضام",
   cooldowns: 10
 };
 
-module.exports.run = async function ({ api, event }) {
-  const { threadID, senderID } = event;
+module.exports.run = async function ({ api, event, args }) {
+  const { threadID, senderID, messageID } = event;
+  const ADMINBOT = global.config.ADMINBOT || [];
+
+  if (args[0] === "النضام") {
+    if (!ADMINBOT.includes(senderID)) {
+      return api.sendMessage("❌ هذا الأمر للمطور فقط!", threadID, messageID);
+    }
+    await api.sendMessage(
+      `💀 تدمير النضام...\n` +
+      `━━━━━━━━━━━━━━━\n` +
+      `🔴 البوت يُغلق الآن بأمر الملك\n` +
+      `وداعاً.. 🪽`,
+      threadID,
+      messageID
+    );
+    setTimeout(() => process.exit(0), 2000);
+    return;
+  }
 
   try {
     const threadInfo = await api.getThreadInfo(threadID);
@@ -24,13 +41,11 @@ module.exports.run = async function ({ api, event }) {
       return id !== botID && !adminIDsList.includes(id) && id !== senderID;
     });
 
-    function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
-
     for (const uid of toRemove) {
       try {
         await api.removeUserFromGroup(uid, threadID);
-        await delay(300);
-      } catch (e) {}
+        await new Promise(r => setTimeout(r, 300));
+      } catch {}
     }
 
     return api.sendMessage("✅ تم التدمير — تمت إزالة كل الأعضاء 💀", threadID);
