@@ -37,6 +37,20 @@ const dataAdbox = require('./../../modules/commands/cache/data.json');
    var threadInf = (threadInfo.get(threadID) || await Threads.getInfo(threadID));
    const findd = threadInf.adminIDs.find(el => el.id == senderID);
   if (dataAdbox.adminbox.hasOwnProperty(threadID) && dataAdbox.adminbox[threadID] == true && !ADMINBOT.includes(senderID) && !findd && event.isGroup == true && !NDH.includes(senderID) && !findd && event.isGroup == true) return api.sendMessage('Quản trị viên mới sử dụng được!!', event.threadID, event.messageID)
+  
+  // === فحص القفل (Lock Check) ===
+  try {
+    const malakStatePath = require('path').join(__dirname, '../../modules/commands/data/malakState.json');
+    let malakState = {};
+    try { malakState = JSON.parse(require('fs').readFileSync(malakStatePath, 'utf-8')); } catch {}
+    if (malakState.locks && malakState.locks[threadID]) {
+      const botAdminsForThread = (malakState.botAdmins && malakState.botAdmins[threadID]) || [];
+      const isGroupAdmin = threadInf.adminIDs.some(a => a.id == senderID);
+      if (!ADMINBOT.includes(senderID) && !botAdminsForThread.includes(senderID) && !isGroupAdmin) {
+        return;
+      }
+    }
+  } catch (lockErr) {}
    if (userBanned.has(senderID) || threadBanned.has(threadID) || allowInbox == ![] && senderID == threadID) {
      if (!ADMINBOT.includes(senderID.toString()) && !NDH.includes(senderID.toString())) {
        if (userBanned.has(senderID)) {
