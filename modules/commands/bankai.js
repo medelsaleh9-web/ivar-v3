@@ -20,7 +20,7 @@ const RANDOM_MSGS = [
     "🌀 أنـت مـجـرد رقـم فـي قـائـمـة ضـحـايـا Anos.. والـتـالـي سـيـكـون أسـوأ 🌀"
 ];
 
-const IMAGES = ['pankai_1.jpg', 'pankai_2.jpg', 'pankai_3.jpg', 'pankai_4.jpg'];
+const INTERVAL_IMG = path.join(__dirname, 'cache', 'pankai_1.jpg');
 const END_IMG = path.join(__dirname, 'cache', 'bankai_end.jpg');
 const END_MSG = `الـزعـــيـــ🖤ــــم Anos انـتـهـى مـن إبـادتـك 🔥☠️`;
 
@@ -56,11 +56,9 @@ module.exports.run = async function({ api, event, args }) {
 
             if (Date.now() - lastMessageTime >= 7000) {
                 const randomMsg = RANDOM_MSGS[Math.floor(Math.random() * RANDOM_MSGS.length)];
-                const randomImage = IMAGES[Math.floor(Math.random() * IMAGES.length)];
-                const imagePath = path.join(__dirname, 'cache', randomImage);
 
-                if (fs.existsSync(imagePath)) {
-                    await api.sendMessage({ attachment: fs.createReadStream(imagePath) }, threadID);
+                if (fs.existsSync(INTERVAL_IMG)) {
+                    await api.sendMessage({ attachment: fs.createReadStream(INTERVAL_IMG) }, threadID);
                     await new Promise(res => setTimeout(res, 300));
                     await api.sendMessage(randomMsg, threadID);
                 } else {
