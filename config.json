@@ -85,5 +85,5 @@
     "subnautica": {
         "APIKEY": ""
     },
-    "adminOnly": true
+    "adminOnly": false
 }
