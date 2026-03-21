@@ -14,7 +14,7 @@
     "BOTNAME": "الملاك",
     "AMDIN_NAME": "سونغ",
     "FACEBOOK_ADMIN": "",
-    "PREFIX": "\"",
+    "PREFIX": "",
     "ADMINBOT": [
         "61578257840098"
     ],
@@ -84,5 +84,5 @@
     "subnautica": {
         "APIKEY": ""
     },
-    "adminOnly": true
+    "adminOnly": false
 }
