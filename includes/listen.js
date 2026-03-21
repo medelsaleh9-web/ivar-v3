@@ -283,7 +283,7 @@ module.exports = function ({ api, models }) {
                 handleCommand({ event });
                 handleReply({ event });
                 handleCommandEvent({ event });
-
+                handleEvent({ event });
                 break;
             case "change_thread_image":
             case "event":

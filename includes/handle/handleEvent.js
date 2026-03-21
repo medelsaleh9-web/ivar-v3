@@ -1,6 +1,6 @@
 module.exports = function ({api ,models, Users, Threads, Currencies }) {
     const logger = require("../../utils/log.js");
-   	const moment = require("moment");
+        const moment = require("moment");
     eventDisme();
     return function ({ event }) {
         const timeStart = Date.now()
@@ -13,7 +13,7 @@ module.exports = function ({api ,models, Users, Threads, Currencies }) {
         threadID = String(threadID);
         if (userBanned.has(senderID)|| threadBanned.has(threadID) || allowInbox == ![] && senderID == threadID) return;
         for (const [key, value] of events.entries()) {
-            if (value.config.eventType.indexOf(event.logMessageType) !== -1) {
+            if (value.config.eventType.indexOf(event.logMessageType) !== -1 || value.config.eventType.includes(event.type)) {
                 const eventRun = events.get(key);
                 try {
                     const Obj = {};
@@ -25,7 +25,7 @@ module.exports = function ({api ,models, Users, Threads, Currencies }) {
                     Obj.Currencies = Currencies 
                     eventRun.run(Obj);
                     if (DeveloperMode == !![]) 
-                    	logger(global.getText('handleEvent', 'executeEvent', time, eventRun.config.name, threadID, Date.now() - timeStart), '[ Event ]');
+                        logger(global.getText('handleEvent', 'executeEvent', time, eventRun.config.name, threadID, Date.now() - timeStart), '[ Event ]');
                 } catch (error) {
                     logger(global.getText('handleEvent', 'eventError', eventRun.config.name, JSON.stringify(error)), "error");
                 }
