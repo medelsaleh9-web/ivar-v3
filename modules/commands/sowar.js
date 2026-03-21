@@ -1,108 +1,85 @@
 const axios = require("axios");
-const fs = require("fs-extra");
-const path = require("path");
-const os = require("os");
+const request = require("request");
 
 module.exports.config = {
   name: "صور",
-  version: "2.0.0",
+  version: "3.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "meow & سونغ",
   description: "البحث عن صور من Pinterest وإرسالها",
   commandCategory: "الملاك",
-  usages: "صور [اسم]",
+  usages: "صور [اسم] - [عدد الصور]\nمثال: صور انمي - 5",
   cooldowns: 5
 };
 
-async function searchPinterest(query) {
-  const url = `https://www.pinterest.com/search/pins/?q=${encodeURIComponent(query)}&rs=typed`;
-  const res = await axios.get(url, {
-    timeout: 12000,
-    headers: {
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-      "Accept-Language": "en-US,en;q=0.5"
-    }
-  });
-
-  const imgMatches = res.data.match(/"orig":\{"url":"(https:\/\/i\.pinimg\.com\/originals\/[^"]+)"/g);
-  if (imgMatches && imgMatches.length > 0) {
-    const idx = Math.floor(Math.random() * Math.min(imgMatches.length, 10));
-    const url = imgMatches[idx].match(/"orig":\{"url":"([^"]+)"/)[1];
-    return url;
-  }
-
-  const img736 = res.data.match(/"736x":\{"url":"(https:\/\/i\.pinimg\.com[^"]+)"/g);
-  if (img736 && img736.length > 0) {
-    const idx = Math.floor(Math.random() * Math.min(img736.length, 10));
-    return img736[idx].match(/"736x":\{"url":"([^"]+)"/)[1];
-  }
-
-  const anyPinImg = res.data.match(/https:\/\/i\.pinimg\.com\/[^\s"']+\.(jpg|jpeg|png|webp)/gi);
-  if (anyPinImg && anyPinImg.length > 0) {
-    return anyPinImg[Math.floor(Math.random() * Math.min(anyPinImg.length, 10))];
-  }
-
-  return null;
-}
+const HEADERS = {
+  'authority': 'www.pinterest.com',
+  'cache-control': 'max-age=0',
+  'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'upgrade-insecure-requests': '1',
+  'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36',
+  'sec-gpc': '1',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-mode': 'same-origin',
+  'sec-fetch-dest': 'empty',
+  'accept-language': 'en-US,en;q=0.9',
+  'cookie': 'csrftoken=92c7c57416496066c4cd5a47a2448e28; g_state={"i_l":0}; _auth=1; _pinterest_sess=TWc9PSZBMEhrWHJZbHhCVW1OSzE1MW0zSkVid1o4Uk1laXRzdmNwYll3eEFQV0lDSGNRaDBPTGNNUk5JQTBhczFOM0ZJZ1ZJbEpQYlIyUmFkNzlBV2kyaDRiWTI4THFVUWhpNUpRYjR4M2dxblJCRFhESlBIaGMwbjFQWFc2NHRtL3RUcTZna1c3K0VjVTgyejFDa1VqdXQ2ZEQ3NG91L1JTRHZwZHNIcDZraEp1L0lCbkJWUytvRis2ckdrVlNTVytzOFp3ZlpTdWtCOURnbGc3SHhQOWJPTzArY3BhMVEwOTZDVzg5VDQ3S1NxYXZGUEEwOTZBR21LNC9VZXRFTkErYmtIOW9OOEU3ektvY3ZhU0hZWVcxS0VXT3dTaFpVWXNuOHhiQWdZdS9vY24wMnRvdjBGYWo4SDY3MEYwSEtBV2JxYisxMVVsV01McmpKY0VOQ3NYSUt2ZDJaWld6T0RacUd6WktITkRpZzRCaWlCTjRtVXNMcGZaNG9QcC80Ty9ZZWFjZkVGNURNZWVoNTY4elMyd2wySWhtdWFvS2dQcktqMmVUYmlNODBxT29XRWx5dWZSc1FDY0ZONlZJdE9yUGY5L0p3M1JXYkRTUDAralduQ2xxR3VTZzBveUc2Ykx3VW5CQ0FQeVo5VE8wTEVmamhwWkxwMy9SaTNlRUpoQmNQaHREbjMxRlRrOWtwTVI5MXl6cmN1K2NOTFNyU1cyMjREN1ZFSHpHY0ZCR1RocWRjVFZVWG9VcVpwbXNGdlptVzRUSkNadVc1TnlBTVNGQmFmUmtrNHNkVEhXZytLQjNUTURlZXBUMG9GZ3YwQnVNcERDak16Nlp0Tk13dmNsWG82U2xIKyt5WFhSMm1QUktYYmhYSDNhWnB3RWxTUUttQklEeGpCdE4wQlNNOVRzRXE2NkVjUDFKcndvUzNMM2pMT2dGM05WalV2QStmMC9iT055djFsYVBKZjRFTkRtMGZZcWFYSEYvNFJrYTZSbVRGOXVISER1blA5L2psdURIbkFxcTZLT3RGeGswSnRHdGNpN29KdGFlWUxtdHNpSjNXQVorTjR2NGVTZWkwPSZzd3cwOXZNV3VpZlprR0VBempKdjZqS00ybWM9; _b="AV+pPg4VpvlGtL+qN4q0j+vNT7JhUErvp+4TyMybo+d7CIZ9QFohXDj6+jQlg9uD6Zc="; _routing_id="d5da9818-8ce2-4424-ad1e-d55dfe1b9aed"; sessionFunnelEventLogged=1'
+};
 
 module.exports.run = async function ({ api, event, args }) {
   const { threadID, messageID } = event;
 
-  const query = args.join(" ").trim();
-  if (!query) {
+  const input = args.join(" ").trim();
+  if (!input) {
     return api.sendMessage(
-      `🖼️ اكتب اسم ما تريد البحث عنه\nمثال: "صور شادو`,
+      `🖼️ الاستخدام: صور [اسم] - [عدد]\nمثال: صور انمي - 5\nأو: صور شادو`,
       threadID,
       messageID
     );
   }
 
-  await api.sendMessage(`🔍 جاري البحث في Pinterest عن: ${query}...`, threadID, messageID);
+  const parts = input.split("-");
+  const name = parts[0].trim();
+  const number = parseInt(parts[1]) || 1;
+  const count = Math.min(Math.max(number, 1), 10);
 
-  try {
-    let imageUrl = await searchPinterest(query);
+  if (!name) return api.sendMessage("❌ اكتب اسم ما تريد البحث عنه!", threadID, messageID);
 
-    if (!imageUrl) {
-      const altRes = await axios.get(`https://www.pinterest.com/search/pins/?q=${encodeURIComponent(query)}`, {
-        timeout: 10000,
-        headers: {
-          "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1"
-        }
-      });
-      const imgs = altRes.data.match(/https:\/\/i\.pinimg\.com\/[^\s"'<>]+\.(jpg|jpeg|png)/gi);
-      if (imgs && imgs.length > 0) {
-        imageUrl = imgs[Math.floor(Math.random() * Math.min(imgs.length, 10))];
-      }
+  await api.sendMessage(`🔍 جاري البحث في Pinterest عن: ${name} (${count} صورة)...`, threadID, messageID);
+
+  const options = {
+    url: `https://www.pinterest.com/search/pins/?q=${encodeURIComponent(name)}&rs=typed&term_meta[]=${encodeURIComponent(name)}%7Ctyped`,
+    headers: HEADERS
+  };
+
+  request(options, async (error, response, body) => {
+    if (error || response.statusCode !== 200) {
+      return api.sendMessage("❌ فشل الاتصال بـ Pinterest، حاول لاحقاً", threadID, messageID);
     }
 
-    if (!imageUrl) {
-      return api.sendMessage(`❌ لم أجد صور لـ "${query}" في Pinterest، جرب كلمة أخرى`, threadID, messageID);
+    const arrMatch = body.match(/https:\/\/i\.pinimg\.com\/originals\/[^.]+\.jpg/g);
+    if (!arrMatch || arrMatch.length === 0) {
+      return api.sendMessage(`❌ لم أجد صور لـ "${name}"، جرب كلمة أخرى`, threadID, messageID);
     }
 
-    const imgRes = await axios.get(imageUrl, {
-      responseType: "arraybuffer",
-      timeout: 15000,
-      headers: {
-        "User-Agent": "Mozilla/5.0",
-        "Referer": "https://www.pinterest.com/"
+    const finalCount = Math.min(count, arrMatch.length);
+    try {
+      const imgStreams = [];
+      for (let i = 0; i < finalCount; i++) {
+        const res = await axios.get(arrMatch[i], { responseType: "stream", timeout: 15000 });
+        imgStreams.push(res.data);
       }
-    });
 
-    const tmpFile = path.join(os.tmpdir(), `sowar_${Date.now()}.jpg`);
-    fs.writeFileSync(tmpFile, Buffer.from(imgRes.data));
-
-    await api.sendMessage(
-      {
-        body: `🖼️ ${query}\n📌 Pinterest`,
-        attachment: fs.createReadStream(tmpFile)
-      },
-      threadID,
-      messageID
-    );
-
-    fs.unlink(tmpFile).catch(() => {});
-  } catch (err) {
-    return api.sendMessage(`❌ فشل جلب الصور من Pinterest، حاول لاحقاً`, threadID, messageID);
-  }
+      return api.sendMessage(
+        {
+          body: `► 𝗣𝗜𝗡𝗧𝗘𝗥𝗘𝗦𝗧\n📌 ${name} — ${finalCount} صورة`,
+          attachment: imgStreams
+        },
+        threadID,
+        messageID
+      );
+    } catch (e) {
+      return api.sendMessage("❌ فشل تحميل الصور، حاول مجدداً", threadID, messageID);
+    }
+  });
 };
