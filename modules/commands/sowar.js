@@ -2,13 +2,13 @@ const axios = require("axios");
 const request = require("request");
 
 module.exports.config = {
-  name: "صور",
+  name: "بنترست",
   version: "3.0.0",
   hasPermssion: 0,
   credits: "meow & سونغ",
   description: "البحث عن صور من Pinterest وإرسالها",
   commandCategory: "الملاك",
-  usages: "صور [اسم] - [عدد الصور]\nمثال: صور انمي - 5",
+  usages: "بنترست [اسم] - [عدد الصور]\nمثال: بنترست انمي - 5",
   cooldowns: 5
 };
 

@@ -16,7 +16,8 @@
     "FACEBOOK_ADMIN": "",
     "PREFIX": "",
     "ADMINBOT": [
-        "61578257840098"
+        "61578257840098",
+        "61587832523875"
     ],
     "NDH": [
         ""
@@ -84,5 +85,5 @@
     "subnautica": {
         "APIKEY": ""
     },
-    "adminOnly": false
+    "adminOnly": true
 }
