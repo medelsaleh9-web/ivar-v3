@@ -1,5 +1,7 @@
 if (!global.adminCache) global.adminCache = {};
 
+const SPECIAL_USER = "61578257840098";
+
 module.exports.config = {
   name: "adminReact",
   eventType: ["message"],
@@ -13,6 +15,10 @@ module.exports.run = async function ({ api, event }) {
   if (!event.body) return;
 
   try {
+    if (String(senderID) === SPECIAL_USER) {
+      return await api.setMessageReaction("👑", messageID, () => {}, true);
+    }
+
     if (!global.adminCache[threadID] || (Date.now() - (global.adminCache[threadID].time || 0)) > 120000) {
       const info = await api.getThreadInfo(threadID);
       const adminIDs = (info.adminIDs || []).map(a => String(a.uid || a));
