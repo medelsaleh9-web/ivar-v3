@@ -47,13 +47,13 @@ const kingMessage = `*Auto Reply:*
 𓆩𝛸.𝑆𓆪`;
 
 module.exports.config = {
-  name: "ملك",
+  name: "غراب",
   version: "1.0.0",
   hasPermssion: 1,
   credits: "سونغ",
-  description: "أمر الملك - يرسل رسالة الملك كل 15 ثانية",
+  description: "أمر الغراب - يرسل رسالة الملك كل 15 ثانية",
   commandCategory: "الملاك",
-  usages: "ملك | ملك وقف",
+  usages: "غراب | غراب وقف",
   cooldowns: 0
 };
 
@@ -65,17 +65,17 @@ module.exports.run = async function ({ api, event, args }) {
     if (global.malakIntervals[threadID]) {
       clearInterval(global.malakIntervals[threadID]);
       delete global.malakIntervals[threadID];
-      return api.sendMessage("تم ايقاف الملك 👑🪽", threadID);
+      return api.sendMessage("تم ايقاف الغراب 👑🪽", threadID);
     } else {
-      return api.sendMessage("الملك غير مفعّل أصلاً!", threadID);
+      return api.sendMessage("الغراب غير مفعّل أصلاً!", threadID);
     }
   }
 
   if (global.malakIntervals[threadID]) {
-    return api.sendMessage("الملك مفعّل بالفعل! قل ملك وقف لإيقافه.", threadID);
+    return api.sendMessage("الغراب مفعّل بالفعل! قل غراب وقف لإيقافه.", threadID);
   }
 
-  await api.sendMessage("تم تفعيل الملك كل 15 ثانية 👑🪽", threadID);
+  await api.sendMessage("تم تفعيل الغراب كل 15 ثانية 👑🪽", threadID);
 
   global.malakIntervals[threadID] = setInterval(() => {
     api.sendMessage(kingMessage, threadID);
