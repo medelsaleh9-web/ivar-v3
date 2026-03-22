@@ -2,7 +2,7 @@ module.exports.config = {
   name: "كريستالي",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "إخراج البوت من الكروب",
   commandCategory: "الملاك",
   usages: "كريستالي",

@@ -5,7 +5,7 @@ module.exports.config = {
   name: "خامن",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "خمن الرقم السري بين 1-20 واربح 3 نقاط",
   commandCategory: "الملاك",
   usages: "خامن",

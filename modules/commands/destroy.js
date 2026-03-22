@@ -2,7 +2,7 @@ module.exports.config = {
   name: "تدمير",
   version: "2.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "تدمير: طرد كل الأعضاء | تدمير النضام: إيقاف البوت",
   commandCategory: "الملاك",
   usages: "تدمير | تدمير النضام",

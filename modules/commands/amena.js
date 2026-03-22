@@ -12,7 +12,7 @@ module.exports.config = {
   name: "امينة",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "مدح امينة الحلوة",
   commandCategory: "الملاك",
   usages: "امينة",

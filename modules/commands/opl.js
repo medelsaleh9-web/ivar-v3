@@ -2,7 +2,7 @@ module.exports.config = {
   name: "OPL",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "إزالة كنيات جميع أعضاء الكروب",
   commandCategory: "الملاك",
   usages: "OPL",

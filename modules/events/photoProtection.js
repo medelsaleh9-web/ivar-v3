@@ -7,7 +7,7 @@ module.exports.config = {
   name: "photoProtection",
   eventType: ["log:thread-icon"],
   version: "1.0.0",
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "حماية صورة الغروب من التغيير"
 };
 

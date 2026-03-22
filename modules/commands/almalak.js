@@ -7,7 +7,7 @@ module.exports.config = {
   name: "الملاك",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "الملاك الذهبي — يرسل الصورة",
   commandCategory: "الملاك",
   usages: "الملاك الذهبي",

@@ -20,7 +20,7 @@ module.exports.config = {
   name: "قصف",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "يرسل قصف جبهة عشوائي",
   commandCategory: "الملاك",
   usages: "قصف",

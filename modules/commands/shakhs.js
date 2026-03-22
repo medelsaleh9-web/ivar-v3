@@ -22,7 +22,7 @@ module.exports.config = {
   name: "شخصيتك",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "تحليل شخصيتك بناءً على اسمك",
   commandCategory: "الملاك",
   usages: "شخصيتك [اسمك]",

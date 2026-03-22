@@ -43,7 +43,7 @@ module.exports.config = {
   name: "شراء",
   version: "2.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "شراء المنتجات من سوق الملاك بالنقاط",
   commandCategory: "الملاك",
   usages: "شراء [اسم المنتج]",

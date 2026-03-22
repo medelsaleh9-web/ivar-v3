@@ -2,7 +2,7 @@ module.exports.config = {
   name: "رولت",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "لعبة الروليت الروسية — حظك يقرر!",
   commandCategory: "الملاك",
   usages: "رولت",

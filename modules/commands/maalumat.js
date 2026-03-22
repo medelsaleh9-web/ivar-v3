@@ -2,7 +2,7 @@ module.exports.config = {
   name: "معلومات",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "عرض معلومات الكروب الحالي",
   commandCategory: "الملاك",
   usages: "معلومات",

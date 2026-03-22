@@ -68,7 +68,7 @@ module.exports.config = {
   name: "تحدي",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "سؤال اختيار من متعدد — أجب بالحرف الصحيح واربح 3 نقاط",
   commandCategory: "الملاك",
   usages: "تحدي",

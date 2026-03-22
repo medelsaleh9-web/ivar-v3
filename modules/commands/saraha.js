@@ -25,7 +25,7 @@ module.exports.config = {
   name: "صراحة",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "سؤال صراحة عشوائي",
   commandCategory: "الملاك",
   usages: "صراحة",

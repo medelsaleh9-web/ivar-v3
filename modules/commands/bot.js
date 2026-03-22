@@ -4,7 +4,7 @@ module.exports.config = {
   name: "بوت",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "محادثة ذكاء اصطناعي مثل ChatGPT",
   commandCategory: "الملاك",
   usages: "بوت [سؤالك]",

@@ -4,7 +4,7 @@ module.exports.config = {
   name: "حسابي",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "عرض نقاطك الحالية",
   commandCategory: "الملاك",
   usages: "حسابي",

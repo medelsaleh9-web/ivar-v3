@@ -25,7 +25,7 @@ module.exports.config = {
   name: "تصميمات",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "إرسال رابط تصميم فيديو لشخصية انمي",
   commandCategory: "الملاك",
   usages: "تصميمات [اسم الشخصية]",

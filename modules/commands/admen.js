@@ -14,7 +14,7 @@ module.exports.config = {
   name: "ادمن",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "إضافة أو إزالة صلاحية استخدام البوت لشخص حتى مع القفل",
   commandCategory: "الملاك",
   usages: "ادمن [ID] | ادمن ازالة [ID] | ادمن قائمة",

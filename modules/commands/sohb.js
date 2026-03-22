@@ -2,7 +2,7 @@ module.exports.config = {
   name: "سحب",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "اختيار عضو عشوائي من الكروب",
   commandCategory: "الملاك",
   usages: "سحب",

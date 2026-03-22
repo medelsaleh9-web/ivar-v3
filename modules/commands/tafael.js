@@ -2,7 +2,7 @@ module.exports.config = {
   name: "تفاعل",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "يتفاعل مع رسالة عن طريق الرد عليها",
   commandCategory: "الملاك",
   usages: "تفاعل [نوع التفاعل] (رد على رسالة)",

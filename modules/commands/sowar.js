@@ -5,7 +5,7 @@ module.exports.config = {
   name: "بنترست",
   version: "3.0.0",
   hasPermssion: 0,
-  credits: "meow & سونغ",
+  credits: "meow & كاڪو",
   description: "البحث عن صور من Pinterest وإرسالها",
   commandCategory: "الملاك",
   usages: "بنترست [اسم] - [عدد الصور]\nمثال: بنترست انمي - 5",

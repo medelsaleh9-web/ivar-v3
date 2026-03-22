@@ -2,7 +2,7 @@ module.exports.config = {
   name: "عمري",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "احسب عمرك من سنة ميلادك",
   commandCategory: "الملاك",
   usages: "عمري [سنة الميلاد]",

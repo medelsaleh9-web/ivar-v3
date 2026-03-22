@@ -12,7 +12,7 @@ module.exports.config = {
   name: "gonzaloDetect",
   eventType: ["message"],
   version: "1.0.0",
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "يرصد ظهور الزعيم غونزالو بعد 15 رسالة غياب"
 };
 

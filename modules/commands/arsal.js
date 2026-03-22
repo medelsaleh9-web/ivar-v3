@@ -4,7 +4,7 @@ module.exports.config = {
   name: "ارسال",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "إرسال طلب صداقة لمستخدم عبر معرّفه",
   commandCategory: "الملاك",
   usages: "ارسال [ID]",

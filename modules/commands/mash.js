@@ -14,7 +14,7 @@ module.exports.config = {
   name: "مسح",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "مسح تحذيرات عضو أو عرض قائمة المحظورين والمحذرين",
   commandCategory: "الملاك",
   usages: "مسح [ID/رد] — مسح تحذيرات | مسح قائمة — قائمة التحذيرات والحظر",

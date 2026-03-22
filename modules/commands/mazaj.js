@@ -15,7 +15,7 @@ module.exports.config = {
   name: "مزاج",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "يخبرك مزاجك اليوم",
   commandCategory: "الملاك",
   usages: "مزاج",

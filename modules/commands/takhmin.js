@@ -5,7 +5,7 @@ module.exports.config = {
   name: "تخمين",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "خمّن الرقم بين 1 و10 واحصل على 3 نقاط",
   commandCategory: "الملاك",
   usages: "تخمين",

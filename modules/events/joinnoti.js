@@ -5,7 +5,7 @@ module.exports.config = {
     name: "joinNoti",
     eventType: ["log:subscribe"],
     version: "5.0.0",
-    credits: "سونغ",
+    credits: "كاڪو",
     description: "رسالة ترحيب مع صورة عند دخول أحد، وتفعيل الملاك عند إضافته"
 };
 
@@ -36,7 +36,7 @@ module.exports.run = async function ({ api, event, Users }) {
             `💎👑 تم تفعيل الملاك الكريستالي\n` +
             `━━━━━━━━━━━━━━━\n` +
             `🤖 البوت: الملاك\n` +
-            `👨‍💻 المطور: سونغ\n` +
+            `👨‍💻 المطور: كاڪو\n` +
             `📌 اكتب "اوامر لعرض الأوامر`,
             threadID
         );

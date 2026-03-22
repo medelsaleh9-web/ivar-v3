@@ -2,7 +2,7 @@ module.exports.config = {
   name: "طرد",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "طرد عضو من الكروب بالـ ID",
   commandCategory: "الملاك",
   usages: "طرد [ID]",

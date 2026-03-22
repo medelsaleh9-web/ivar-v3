@@ -6,7 +6,7 @@ module.exports.config = {
   name: "adminReact",
   eventType: ["message"],
   version: "1.0.0",
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "يتفاعل مع رسائل الادمن بـ 👑"
 };
 

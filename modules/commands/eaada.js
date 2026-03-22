@@ -2,7 +2,7 @@ module.exports.config = {
   name: "اعادة",
   version: "1.0.0",
   hasPermssion: 3,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "إعادة تشغيل البوت",
   commandCategory: "الملاك",
   usages: "اعادة",

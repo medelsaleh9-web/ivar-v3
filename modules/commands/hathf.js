@@ -2,7 +2,7 @@ module.exports.config = {
   name: "حذف",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "حذف رسالة البوت عند الرد عليها",
   commandCategory: "الملاك",
   usages: "حذف (رد على رسالة البوت)",

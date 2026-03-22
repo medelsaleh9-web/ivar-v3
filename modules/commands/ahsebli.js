@@ -2,7 +2,7 @@ module.exports.config = {
   name: "احسبلي",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "آلة حاسبة بسيطة",
   commandCategory: "الملاك",
   usages: "احسبلي [عملية حسابية]",

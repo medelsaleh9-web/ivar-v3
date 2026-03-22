@@ -2,7 +2,7 @@ module.exports.config = {
   name: "ملاك",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "يرسل معرّف الكروب",
   commandCategory: "الملاك",
   usages: "ملاك",

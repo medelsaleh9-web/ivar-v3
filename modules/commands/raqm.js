@@ -2,7 +2,7 @@ module.exports.config = {
   name: "رقم",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "توليد رقم عشوائي بين رقمين",
   commandCategory: "الملاك",
   usages: "رقم [من] [إلى]",

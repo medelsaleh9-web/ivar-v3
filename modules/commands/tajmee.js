@@ -12,7 +12,7 @@ module.exports.config = {
   name: "تجميع",
   version: "2.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "لعبة تجميع الحروف — اجمع الحروف لتكوين الكلمة، الفائز يحصل على نقطة",
   commandCategory: "الملاك",
   usages: "تجميع",

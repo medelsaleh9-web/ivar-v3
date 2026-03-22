@@ -4,7 +4,7 @@ module.exports.config = {
   name: "سوق",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "عرض أسعار منتجات سوق الملاك",
   commandCategory: "الملاك",
   usages: "سوق",

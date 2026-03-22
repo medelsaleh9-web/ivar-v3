@@ -6,7 +6,7 @@ module.exports.config = {
   name: "nicknameProtection",
   eventType: ["log:user-nickname"],
   version: "2.0.0",
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "حماية الكنيات من التغيير — لا يمكن لأحد تغييرها إلا ادمن البوت"
 };
 

@@ -38,7 +38,7 @@ module.exports.config = {
   name: "سؤال",
   version: "2.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "لعبة الأسئلة — أجب بشكل صحيح واحصل على 5 نقاط",
   commandCategory: "الملاك",
   usages: "سؤال",

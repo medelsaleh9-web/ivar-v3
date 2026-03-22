@@ -12,7 +12,7 @@ module.exports.config = {
   name: "سباق",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "سباق الكتابة — أول من يكتب الكلمة يفوز (+3 نقاط)",
   commandCategory: "الملاك",
   usages: "سباق",

@@ -2,7 +2,7 @@ module.exports.config = {
   name: "زخرفة",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "زخرفة النصوص العربية والإنجليزية بأكثر من 50 أسلوب",
   commandCategory: "الملاك",
   usages: "زخرفة [نص]",

@@ -12,7 +12,7 @@ module.exports.config = {
   name: "تفكيك",
   version: "2.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "لعبة تفكيك الكلمة — فكك الكلمة لحروف منفصلة، الفائز يحصل على نقطة",
   commandCategory: "الملاك",
   usages: "تفكيك",

@@ -14,7 +14,7 @@ module.exports.config = {
   name: "amenaDetect",
   eventType: ["message"],
   version: "1.0.0",
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "يرصد ظهور moonmui606 بعد 15 رسالة غياب"
 };
 

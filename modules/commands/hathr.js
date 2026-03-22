@@ -14,7 +14,7 @@ module.exports.config = {
   name: "حظر",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "حظر عضو من استخدام البوت في الكروب",
   commandCategory: "الملاك",
   usages: "حظر (رد على رسالة) | حظر [ID]",

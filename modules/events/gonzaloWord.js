@@ -13,7 +13,7 @@ module.exports.config = {
   name: "gonzaloWord",
   eventType: ["message"],
   version: "1.0.0",
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "يرسل رسالة غونزالو عند ذكر اسمه"
 };
 

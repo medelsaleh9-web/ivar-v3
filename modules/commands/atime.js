@@ -9,7 +9,7 @@ module.exports.config = {
   name: "اتايم",
   version: "2.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "إرسال رسالة أو صورة تلقائياً كل X ثوان (رد على الرسالة أو الصورة المراد إرسالها)",
   commandCategory: "الملاك",
   usages: "اتايم [ثوان] | اتايم توقف",

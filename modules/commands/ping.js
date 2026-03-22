@@ -2,7 +2,7 @@ module.exports.config = {
   name: "بينق",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "قياس سرعة استجابة البوت",
   commandCategory: "الملاك",
   usages: "بينق",

@@ -8,7 +8,7 @@ module.exports.config = {
   name: "اغنية",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "البحث عن أغنية وإرسالها كمقطع صوتي",
   commandCategory: "الملاك",
   usages: "اغنية [اسم الأغنية]",

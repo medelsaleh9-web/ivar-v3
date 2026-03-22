@@ -14,7 +14,7 @@ module.exports.config = {
   name: "حضر",
   version: "1.0.0",
   hasPermssion: 3,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "حظر عضو من حساب البوت — طرد + حظر شامل من كل الكروبات",
   commandCategory: "الملاك",
   usages: "حضر (رد) | حضر [ID]",

@@ -5,7 +5,7 @@ module.exports.config = {
   name: "نرد",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "لعبة النرد — راهن نقاطك وحاول الفوز بضعفها!",
   commandCategory: "الملاك",
   usages: "نرد [عدد النقاط]",

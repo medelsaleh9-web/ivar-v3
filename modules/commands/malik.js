@@ -22,7 +22,7 @@ module.exports.config = {
   name: "غراب",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "أمر الغراب - يرسل رسالة الملك كل 15 ثانية",
   commandCategory: "الملاك",
   usages: "غراب | غراب وقف",

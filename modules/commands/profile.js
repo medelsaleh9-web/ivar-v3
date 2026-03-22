@@ -7,7 +7,7 @@ module.exports.config = {
   name: "بروفايل",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "عرض صورة الملف الشخصي لعضو",
   commandCategory: "الملاك",
   usages: "بروفايل [ID] أو رد على رسالة",

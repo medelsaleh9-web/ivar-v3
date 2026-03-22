@@ -20,7 +20,7 @@ module.exports.config = {
   name: "قرآن",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "إرسال آية قرآنية كريمة عشوائية",
   commandCategory: "الملاك",
   usages: "قرآن",

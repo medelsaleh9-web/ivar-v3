@@ -23,7 +23,7 @@ module.exports.config = {
   name: "لغز",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "لعبة الألغاز — حل اللغز واحصل على 4 نقاط",
   commandCategory: "الملاك",
   usages: "لغز",

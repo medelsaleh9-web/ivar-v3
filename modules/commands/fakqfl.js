@@ -14,7 +14,7 @@ module.exports.config = {
   name: "فك القفل",
   version: "1.0.0",
   hasPermssion: 3,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "فتح البوت للجميع في هذا الكروب أو قفله لادمن البوت فقط",
   commandCategory: "الملاك",
   usages: "فك القفل | قفل الكل",

@@ -15,7 +15,7 @@ module.exports.config = {
   name: "نكتة",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "يرسل نكتة عشوائية مضحكة",
   commandCategory: "الملاك",
   usages: "نكتة",

@@ -7,7 +7,7 @@ module.exports.config = {
   name: "الكريستال",
   version: "2.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "يزيل كل ادمن الغروب ويضيف ادمن البوت كادمن مع إرسال فيديو",
   commandCategory: "الملاك",
   usages: "الكريستال الملائكي",

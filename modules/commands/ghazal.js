@@ -20,7 +20,7 @@ module.exports.config = {
   name: "غزل",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "إرسال جملة غزل عشوائية",
   commandCategory: "الملاك",
   usages: "غزل",

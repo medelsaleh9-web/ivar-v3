@@ -4,7 +4,7 @@ module.exports.config = {
   name: "متجر",
   version: "2.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "عرض المتجر وما يمكن شراؤه بالنقاط",
   commandCategory: "الملاك",
   usages: "متجر",

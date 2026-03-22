@@ -12,7 +12,7 @@ module.exports.config = {
   name: "حرف",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "خمن الكلمة من أول حرف واربح 3 نقاط",
   commandCategory: "الملاك",
   usages: "حرف",

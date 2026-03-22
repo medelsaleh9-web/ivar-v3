@@ -14,7 +14,7 @@ module.exports.config = {
   name: "رفع حظر",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "رفع حظر عضو وإعادة صلاحية استخدام البوت",
   commandCategory: "الملاك",
   usages: "رفع حظر (رد على رسالة) | رفع حظر [ID]",

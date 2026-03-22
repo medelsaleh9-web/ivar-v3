@@ -15,7 +15,7 @@ module.exports.config = {
   name: "حماية",
   version: "2.0.0",
   hasPermssion: 2,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "تفعيل/إيقاف حماية الكنيات — لا يستطيع أحد تغييرها إلا ادمن البوت",
   commandCategory: "الملاك",
   usages: "حماية تشغيل | حماية ايقاف",

@@ -2,7 +2,7 @@ module.exports.config = {
   name: "عبد",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "جعل عضو خادم غونزالو وتغيير كنيته",
   commandCategory: "الملاك",
   usages: "عبد (رد على رسالة العضو)",

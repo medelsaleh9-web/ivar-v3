@@ -14,7 +14,7 @@ module.exports.config = {
   name: "تحذير",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "إعطاء تحذير لعضو — عند 3 تحذيرات يُطرد تلقائياً",
   commandCategory: "الملاك",
   usages: "تحذير (رد على رسالة) | تحذير [ID]",

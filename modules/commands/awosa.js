@@ -2,7 +2,7 @@ module.exports.config = {
   name: "انوسة",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "رد على من يقول انوسة",
   commandCategory: "الملاك",
   usages: "انوسة",

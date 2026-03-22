@@ -14,7 +14,7 @@ module.exports.config = {
   name: "تاج",
   version: "1.0.0",
   hasPermssion: 2,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "إضافة شخص كادمن بوت بالـ ID",
   commandCategory: "الملاك",
   usages: "تاج [ID]",

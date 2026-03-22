@@ -2,7 +2,7 @@ module.exports.config = {
   name: "تبليغ",
   version: "4.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "يبلغ على صاحب الرسالة عند الرد عليها",
   commandCategory: "الملاك",
   usages: "تبليغ (رد على رسالة الشخص)",

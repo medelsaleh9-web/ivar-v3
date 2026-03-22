@@ -14,7 +14,7 @@ module.exports.config = {
   name: "قفل",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "قفل البوت للادمن فقط أو فتحه للجميع",
   commandCategory: "الملاك",
   usages: "قفل تشغيل | قفل ايقاف",

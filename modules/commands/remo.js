@@ -18,7 +18,7 @@ module.exports.config = {
   name: "ريمو",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "تعيين صورة الغروب من رد على صورة وحمايتها من التغيير",
   commandCategory: "الملاك",
   usages: "ريمو (رد على صورة) | ريمو ايقاف",

@@ -5,7 +5,7 @@ module.exports.config = {
     name: "leaveNoti",
     eventType: ["log:unsubscribe"],
     version: "3.0.0",
-    credits: "سونغ",
+    credits: "كاڪو",
     description: "رسالة وداع مع صورة عند خروج أو طرد أحد"
 };
 

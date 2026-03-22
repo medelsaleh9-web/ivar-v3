@@ -2,7 +2,7 @@ module.exports.config = {
   name: "الاسطوري",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "عرض مدة تشغيل البوت",
   commandCategory: "الملاك",
   usages: "الاسطوري",

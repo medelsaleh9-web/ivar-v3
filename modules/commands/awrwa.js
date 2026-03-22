@@ -16,7 +16,7 @@ module.exports.config = {
   name: "اوروا",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "يغير اسم الكروب ويمنع تغييره",
   commandCategory: "الملاك",
   usages: "اوروا [اسم] | اوروا وقف",

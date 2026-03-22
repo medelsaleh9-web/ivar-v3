@@ -17,7 +17,7 @@ module.exports.config = {
   name: "نصيحة",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "يعطيك نصيحة عشوائية مفيدة",
   commandCategory: "الملاك",
   usages: "نصيحة",

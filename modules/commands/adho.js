@@ -2,7 +2,7 @@ module.exports.config = {
   name: "عضو",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "عرض معلومات عضو عند الرد على رسالته أو بالـ ID",
   commandCategory: "الملاك",
   usages: "عضو (رد على رسالة) | عضو [ID]",

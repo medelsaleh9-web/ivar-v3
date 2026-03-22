@@ -4,7 +4,7 @@ module.exports.config = {
   name: "رتبتي",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "عرض ترتيب النقاط في الكروب",
   commandCategory: "الملاك",
   usages: "رتبتي",

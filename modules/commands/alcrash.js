@@ -14,7 +14,7 @@ module.exports.config = {
   name: "الكراش",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "يرسل صورة الكراش — للادمن فقط",
   commandCategory: "الملاك",
   usages: "الكراش",

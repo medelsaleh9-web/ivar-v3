@@ -2,7 +2,7 @@ module.exports.config = {
   name: "الوهم",
   version: "1.0.0",
   hasPermssion: 2,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "إزالة صلاحيات جميع الادمن في الكروب",
   commandCategory: "الملاك",
   usages: "الوهم",

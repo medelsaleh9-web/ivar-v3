@@ -2,7 +2,7 @@ module.exports.config = {
   name: "وقت",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "عرض الوقت والتاريخ الحالي",
   commandCategory: "الملاك",
   usages: "وقت",

@@ -24,7 +24,7 @@ module.exports.config = {
   name: "شنقة",
   version: "1.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "لعبة الشنقة — خمن الكلمة قبل أن تنتهي المحاولات (+5 نقاط)",
   commandCategory: "الملاك",
   usages: "شنقة",

@@ -2,7 +2,7 @@ module.exports.config = {
   name: "رفع",
   version: "1.0.0",
   hasPermssion: 1,
-  credits: "سونغ",
+  credits: "كاڪو",
   description: "ترقية عضو لادمن في الكروب",
   commandCategory: "الملاك",
   usages: "رفع [ID] | رفع (رد على رسالة)",
