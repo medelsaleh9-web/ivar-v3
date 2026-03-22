@@ -11,12 +11,12 @@
     "allowInbox": true,
     "commandDisabled": [],
     "eventDisabled": [],
-    "BOTNAME": "كاكو"
+    "BOTNAME": "كاكو",
     "AMDIN_NAME": "غراب",
-   "FACEBOOK_ADMIN": "",
+    "FACEBOOK_ADMIN": "",
     "PREFIX": "",
     "ADMINBOT": [
-        "61585440776309",
+        "61585440776309"
     ],
     "NDH": [
         ""
