@@ -27,12 +27,12 @@ module.exports.run = async function ({ api, event }) {
     return api.sendMessage("😅 لا يمكن تعيين البوت خادماً!", threadID, messageID);
   }
 
-  const nickname = `خآدم 𝑮𝑶𝑵𝒁𝑨𝑳𝑶 🥒🔥`;
+  const nickname = `خآدم الغࢪبآان`;
 
   try {
     await api.changeNickname(nickname, threadID, targetID);
     return api.sendMessage(
-      `انت اصبحت خادم غونزالو الشخصي لايمكنك تغيير كنيتك الان 🔥`,
+      `حڪم عليڪ القاضي ڪاڪو بالإستعباد لما تبقى لك فهذا الغروب`,
       threadID,
       messageID
     );
