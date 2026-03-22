@@ -11,13 +11,12 @@
     "allowInbox": true,
     "commandDisabled": [],
     "eventDisabled": [],
-    "BOTNAME": "الملاك",
-    "AMDIN_NAME": "سونغ",
-    "FACEBOOK_ADMIN": "",
+    "BOTNAME": "كاكو"
+    "AMDIN_NAME": "غراب",
+   "FACEBOOK_ADMIN": "",
     "PREFIX": "",
     "ADMINBOT": [
-        "61578257840098",
-        "61587832523875"
+        "61585440776309",
     ],
     "NDH": [
         ""

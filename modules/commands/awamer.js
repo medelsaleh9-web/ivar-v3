@@ -2,9 +2,10 @@ module.exports.config = {
   name: "اوامر",
   version: "6.0.0",
   hasPermssion: 0,
-  credits: "سونغ",
+  credits: "الملاك" 
+ 
   description: "عرض الأوامر المتاحة",
-  commandCategory: "الملاك",
+  commandCategory: "الغراب",
   usages: "اوامر",
   cooldowns: 5
 };
@@ -13,8 +14,9 @@ module.exports.run = async function ({ api, event }) {
   const { threadID } = event;
   const msg = `
 ╔══════════════════╗
-   🤖 البوت: الملاك
-   👨‍💻 المطور: سونغ
+   𝑪𝑹𝑶𝑾𝑺
+   𝑲𝑨𝑲𝑼
+   
 ╚══════════════════╝
 
 البادئة: "
@@ -22,7 +24,7 @@ module.exports.run = async function ({ api, event }) {
 ━━━━━━━━━━━━━━━━━━
 📋 أوامر الإدارة
 ━━━━━━━━━━━━━━━━━━
-🔹 ملك — تفعيل وضع الملك
+🔹    غراب —تشغيل وضع الملك
 🔹 ملك وقف — إيقاف وضع الملك
 🔹 ملاك — عرض معرّف الكروب
 🔹 اوروا [اسم] — تغيير اسم الكروب وحمايته
@@ -137,7 +139,7 @@ module.exports.run = async function ({ api, event }) {
 🔹 الملاك الذهبي — يرسل صورة الملاك
 
 ━━━━━━━━━━━━━━━━━━
-👑🪽 الملاك | 𝗚𝗢𝗡𝗭𝗔𝗟𝗢
+🐦‍⬛لغراب | 𝑪𝒓𝒐𝒘𝒔
 ━━━━━━━━━━━━━━━━━━`.trim();
 
   return api.sendMessage(msg, threadID);
