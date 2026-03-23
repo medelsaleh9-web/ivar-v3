@@ -6,7 +6,7 @@ module.exports.config = {
  
   description: "عرض الأوامر المتاحة",
   commandCategory: "الغراب",
-  usages: "اوامر",
+  usages: "رول",
   cooldowns: 5
 };
 
