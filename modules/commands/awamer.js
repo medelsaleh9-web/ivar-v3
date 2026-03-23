@@ -2,8 +2,7 @@ module.exports.config = {
   name: "اوامر",
   version: "6.0.0",
   hasPermssion: 0,
-  credits: "الملاك" 
- 
+  credits: "الملاك",
   description: "عرض الأوامر المتاحة",
   commandCategory: "الغراب",
   usages: "رول",
