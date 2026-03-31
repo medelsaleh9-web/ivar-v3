@@ -36,8 +36,24 @@ app.get('/', function(req, res) {
 });
 
 
-app.listen(port);
-console.log('𝐌𝐚́𝐲 𝐜𝐡𝐮̉ 𝐛𝐚̆́𝐭 𝐝𝐚̂̀𝐮 𝐭𝐚̣𝐢 http://localhost:' + port,"𝐯𝐚̀𝐨 𝐥𝐮́𝐜:" + gio,"\n\n");
+const server = app.listen(port, () => {
+    console.log('𝐌𝐚́𝐲 𝐜𝐡𝐮̉ 𝐛𝐚̆́𝐭 𝐝𝐚̂̀𝐮 𝐭𝐚̣𝐢 http://localhost:' + port, "𝐯𝐚̀𝐨 𝐥𝐮́𝐜:" + gio, "\n\n");
+});
+
+server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+        console.log(`Port ${port} is already in use, releasing it...`);
+        require('child_process').exec(`fuser -k ${port}/tcp`, () => {
+            setTimeout(() => {
+                server.listen(port, () => {
+                    console.log('𝐌𝐚́𝐲 𝐜𝐡𝐮̉ 𝐛𝐚̆́𝐭 𝐝𝐚̂̀𝐮 𝐭𝐚̣𝐢 http://localhost:' + port, "𝐯𝐚̀𝐨 𝐥𝐮́𝐜:" + gio, "\n\n");
+                });
+            }, 1000);
+        });
+    } else {
+        throw err;
+    }
+});
 
 
 logger("𝐋𝐢𝐞̂𝐧 𝐡𝐞̣̂ 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤: https://www.facebook.com/TatsuYTB", "𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤");
