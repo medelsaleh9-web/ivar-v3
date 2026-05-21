@@ -66,8 +66,31 @@ console.log(frame);
 logger("𝕐𝕠𝕦𝕣 𝕧𝕖𝕣𝕤𝕚𝕠𝕟 𝕚𝕤 𝕥𝕙𝕖 𝕝𝕒𝕥𝕖𝕤𝕥!", "UPDATE");
 
 
+let restartCount = 0;
+let lastRestartTime = Date.now();
+const MAX_RESTARTS = 10;
+const RESTART_WINDOW = 5 * 60 * 1000;
+const MIN_RESTART_DELAY = 5000;
+
 function startBot(message) {
     (message) ? logger(message, "BOT ĐANG KHỞI ĐỘNG") : "";
+
+    const now = Date.now();
+    if (now - lastRestartTime > RESTART_WINDOW) {
+        restartCount = 0;
+        lastRestartTime = now;
+    }
+
+    if (restartCount >= MAX_RESTARTS) {
+        logger("Too many restarts in a short time. Waiting 2 minutes before next attempt...", "[ PROTECTION ]");
+        setTimeout(() => {
+            restartCount = 0;
+            startBot("Resuming after cooldown...");
+        }, 2 * 60 * 1000);
+        return;
+    }
+
+    restartCount++;
 
     const child = spawn("node", ["--trace-warnings", "--async-stack-traces", "main-loader.cjs"], {
         cwd: __dirname,
@@ -75,14 +98,15 @@ function startBot(message) {
         shell: true
     });
 
-   child.on("close",async (codeExit) => {
-      var x = 'codeExit'.replace('codeExit',codeExit);
-        if (codeExit == 1) return startBot("BOT RESTARTING!!!");
-         else if (x.indexOf(2) == 0) {
-           await new Promise(resolve => setTimeout(resolve, parseInt(x.replace(2,'')) * 1000));
-                 startBot("Bot has been activated please wait a moment!!!");
-       }
-         else return; 
+    child.on("close", async (codeExit) => {
+        if (codeExit == 1) {
+            await new Promise(resolve => setTimeout(resolve, MIN_RESTART_DELAY));
+            return startBot("BOT RESTARTING!!!");
+        } else if (String(codeExit).indexOf('2') == 0) {
+            const delay = parseInt(String(codeExit).replace('2', '') || '5') * 1000;
+            await new Promise(resolve => setTimeout(resolve, Math.max(delay, MIN_RESTART_DELAY)));
+            startBot("Bot has been activated please wait a moment!!!");
+        } else return;
     });
 
     child.on("error", function (error) {

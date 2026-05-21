@@ -17,11 +17,8 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
          const threadSetting = threadData.get(threadID) || {}
          const prefixRegex = new RegExp(`^(<@!?${senderID}>|${escapeRegex((threadSetting.hasOwnProperty("PREFIX")) ? threadSetting.PREFIX : PREFIX)})\\s*`);
          if (!prefixRegex.test(body)) return;
-         const adminbot = require('./../../config.json');
+         const adminbot = global.config;
          let getDay = moment.tz("Asia/Ho_Chi_Minh").day();
-         let usgPath = __dirname + '/usages.json';
-         if (!fs.existsSync(usgPath)) fs.writeFileSync(usgPath, JSON.stringify({}));
-         let usages = JSON.parse(fs.readFileSync(usgPath));
          
    if(!global.data.allThreadID.includes(threadID) && !ADMINBOT.includes(senderID) && adminbot.adminPaseOnly == true) {
  return api.sendMessage("Admin bot mới dùng bot trong đoạn chat riêng!!", threadID, messageID)
@@ -84,7 +81,6 @@ const dataAdbox = require('./../../modules/commands/cache/data.json');
      args = body.slice(matchedPrefix.length).trim().split(/ +/);
    commandName = args.shift().toLowerCase();
    var command = commands.get(commandName);
-   fs.writeFileSync(usgPath, JSON.stringify(usages, null, 4));
 
    
    if (!command) {
@@ -166,8 +162,6 @@ const dataAdbox = require('./../../modules/commands/cache/data.json');
      Obj.Currencies = Currencies
      Obj.permssion = permssion
      Obj.getText = getText2
-     usages = JSON.parse(fs.readFileSync(usgPath));
-     fs.writeFileSync(usgPath, JSON.stringify(usages, null, 4));
      command.run(Obj);
      timestamps.set(senderID, dateNow);
      if (DeveloperMode == !![])

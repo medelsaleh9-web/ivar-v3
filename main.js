@@ -353,17 +353,39 @@ function onBot({ models: botModel }) {
         listenerData.models = botModel;
         const listener = require('./includes/listen')(listenerData);
 
-        function listenerCallback(error, message) {
-            if (error) return logger(global.getText('mirai', 'handleListenError', JSON.stringify(error)), 'error');
-            if (['presence', 'typ', 'read_receipt'].some(data => data == message.type)) return;
-            if (global.config.DeveloperMode == !![]) console.log(message);
-            return listener(message);
-        };
-        global.handleListen = loginApiData.listenMqtt(listenerCallback);
+        let reconnectAttempts = 0;
+        const MAX_RECONNECT = 10;
+
+        function startListening() {
+            function listenerCallback(error, message) {
+                if (error) {
+                    const errStr = JSON.stringify(error);
+                    logger(global.getText('mirai', 'handleListenError', errStr), 'error');
+                    if (reconnectAttempts < MAX_RECONNECT) {
+                        reconnectAttempts++;
+                        const delay = Math.min(5000 * reconnectAttempts, 60000);
+                        logger(`Reconnecting in ${delay / 1000}s (attempt ${reconnectAttempts}/${MAX_RECONNECT})...`, '[ RECONNECT ]');
+                        setTimeout(() => startListening(), delay);
+                    } else {
+                        logger('Max reconnect attempts reached. Restarting bot process...', '[ RECONNECT ]');
+                        process.exit(1);
+                    }
+                    return;
+                }
+                reconnectAttempts = 0;
+                if (['presence', 'typ', 'read_receipt'].some(data => data == message.type)) return;
+                if (global.config.DeveloperMode == !![]) console.log(message);
+                return listener(message);
+            }
+            global.handleListen = loginApiData.listenMqtt(listenerCallback);
+        }
+
+        startListening();
+
         try {
             await checkBan(loginApiData);
         } catch (error) {
-            return //process.exit(0);
+            return;
         };
 
 
@@ -428,4 +450,9 @@ function onBot({ models: botModel }) {
         onBot(botData);
     } catch (error) { logger(global.getText('mirai', 'successConnectDatabase', JSON.stringify(error)), '[ DATABASE ]'); }
 })();
-process.on('unhandledRejection', (err, p) => {});
+process.on('unhandledRejection', (err) => {
+    if (err) logger('Unhandled Rejection: ' + (err.message || JSON.stringify(err)), '[ ERROR ]');
+});
+process.on('uncaughtException', (err) => {
+    if (err) logger('Uncaught Exception: ' + (err.message || JSON.stringify(err)), '[ ERROR ]');
+});
