@@ -9,7 +9,7 @@ module.exports.config = {
   credits: "كاڪو",
   description: "يعرض وقت تشغيل البوت وحالته",
   commandCategory: "info",
-  usages: "",
+  usages: "uptime",
   cooldowns: 5,
   dependencies: {
     "moment-timezone": "latest",
