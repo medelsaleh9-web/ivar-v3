@@ -3,7 +3,7 @@ const pidusage = require("pidusage");
 const { performance } = require("perf_hooks");
 
 module.exports.config = {
-  name: "uptime",
+  name: "ابتيم",
   version: "2.0.0",
   hasPermssion: 0,
   credits: "كاڪو",

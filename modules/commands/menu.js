@@ -49,7 +49,7 @@ module.exports.run = async function ({ api, event }) {
 
   msg += `『 🌍 للجميع 』\n`;
   msg += `${tline}\n`;
-  msg += `  📊 uptime — حالة البوت\n`;
+  msg += `  📊 ابتيم — حالة البوت\n`;
   msg += `  💘 كراشي — يحزر كراشك\n`;
   msg += `${tline}\n\n`;
 
