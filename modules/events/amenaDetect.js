@@ -18,6 +18,9 @@ module.exports.config = {
   description: "يرصد ظهور moonmui606 بعد 15 رسالة غياب"
 };
 
+if (!global.amenaResolvedUIDs) global.amenaResolvedUIDs = new Set();
+if (!global.amenaCheckedUIDs) global.amenaCheckedUIDs = new Set();
+
 module.exports.run = async function ({ api, event }) {
   const { threadID, senderID } = event;
   if (!event.body) return;
@@ -28,15 +31,21 @@ module.exports.run = async function ({ api, event }) {
 
   const tracker = global.amenaTracker[threadID];
 
-  try {
-    const userInfo = await api.getUserInfo(senderID);
-    const profile = userInfo[senderID];
-    const vanity = profile?.vanity || profile?.username || "";
+  if (!global.amenaCheckedUIDs.has(senderID)) {
+    global.amenaCheckedUIDs.add(senderID);
+    try {
+      const userInfo = await api.getUserInfo(senderID);
+      const profile = userInfo[senderID];
+      const vanity = profile?.vanity || profile?.username || "";
+      if (vanity === AMENA_USERNAME || (profile?.name || "").toLowerCase().includes("moonmui")) {
+        global.amenaResolvedUIDs.add(senderID);
+      }
+    } catch {}
+  }
 
-    if (vanity === AMENA_USERNAME || (profile?.name || "").toLowerCase().includes("moonmui")) {
-      if (!tracker.amenaUID) tracker.amenaUID = senderID;
-    }
-  } catch {}
+  if (global.amenaResolvedUIDs.has(senderID)) {
+    if (!tracker.amenaUID) tracker.amenaUID = senderID;
+  }
 
   if (tracker.amenaUID && senderID === tracker.amenaUID) {
     if (tracker.count >= 15) {
