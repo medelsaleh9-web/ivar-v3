@@ -357,6 +357,10 @@ function onBot({ models: botModel }) {
         const MAX_RECONNECT = 10;
 
         function startListening() {
+            if (global.handleListen && typeof global.handleListen.stopListening === 'function') {
+                try { global.handleListen.stopListening(); } catch (_) {}
+                global.handleListen = null;
+            }
             function listenerCallback(error, message) {
                 if (error) {
                     const errStr = JSON.stringify(error);

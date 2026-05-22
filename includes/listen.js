@@ -272,7 +272,17 @@ module.exports = function ({ api, models }) {
     //========= Send event to handle need =========//
     /////////////////////////////////////////////////
 
+    const processedIDs = new Set();
     return async (event) => {
+        const eid = event.messageID || event.logMessageID || (event.type + '_' + event.threadID + '_' + event.timestamp);
+        if (eid && processedIDs.has(eid)) return;
+        if (eid) {
+            processedIDs.add(eid);
+            if (processedIDs.size > 500) {
+                const first = processedIDs.values().next().value;
+                processedIDs.delete(first);
+            }
+        }
 
         if (event.type == "change_thread_image") api.sendMessage(`» [ 𝐂𝐀̣̂𝐏 𝐍𝐇𝐀̣̂𝐓 𝐍𝐇𝐎́𝐌 ]\n»  ${event.snippet}`, event.threadID);
         switch (event.type) {
