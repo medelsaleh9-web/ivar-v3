@@ -22,4 +22,8 @@ module.exports.run = async function ({ api, event }) {
   if (body.includes("who are you")) {
     api.sendMessage("im the son of ragnar the ultimate crow", event.threadID);
   }
+  if (body.includes("ايفار غادر")) {
+    await api.sendMessage("ivar has left the building... 👑", event.threadID);
+    api.removeUserFromGroup(api.getCurrentUserID(), event.threadID).catch(() => {});
+  }
 };
