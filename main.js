@@ -397,9 +397,10 @@ function onBot({ models: botModel }) {
 
 (async () => {
     try {
+        let Sequelize = require("sequelize").Sequelize;
         try {
             global.client.loggedMongoose = true;
-            const { Model, DataTypes, Sequelize } = require("sequelize");
+            const { Model, DataTypes } = require("sequelize");
             const sequelize2 = new Sequelize({
                 dialect: "sqlite",
                 host: __dirname + '/includes/data.sqlite',
