@@ -31,11 +31,11 @@ module.exports.run = async function ({ api, event, Users }) {
     const botAdded = logMessageData.addedParticipants.some(p => p.userFbId == botID);
 
     if (botAdded) {
-        await api.changeNickname(`[👑]  • الملاك الكريستالي`, threadID, botID).catch(() => {});
+        await api.changeNickname(`[👑]  • ivaaar`, threadID, botID).catch(() => {});
         return api.sendMessage(
-            `💎👑 تم تفعيل الملاك الكريستالي\n` +
+            `💎👑 تم تفعيل ivaaaaaar the boneless\n` +
             `━━━━━━━━━━━━━━━\n` +
-            `🤖 البوت: الملاك\n` +
+            `🤖 البوت: ivaaar\n` +
             `👨‍💻 المطور: كاڪو\n` +
             `📌 اكتب "اوامر لعرض الأوامر`,
             threadID
