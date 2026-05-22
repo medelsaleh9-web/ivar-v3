@@ -12,4 +12,7 @@ module.exports.run = async function ({ api, event }) {
   if (body.includes("ايفار") || body.includes("ivar")) {
     api.sendMessage("do u think that u caaaan kill mee IM IVAAAAR THE BONELLESSSSSS", event.threadID);
   }
+  if (body.includes("who are you")) {
+    api.sendMessage("im the son of ragnar the ultimate crow", event.threadID);
+  }
 };
