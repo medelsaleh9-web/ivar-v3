@@ -1,6 +1,6 @@
 const moment = require("moment-timezone");
-const pidusage = require("pidusage");
 const { performance } = require("perf_hooks");
+const os = require("os");
 
 module.exports.config = {
   name: "ابتيم",
@@ -9,11 +9,10 @@ module.exports.config = {
   credits: "كاڪو",
   description: "يعرض وقت تشغيل البوت وحالته",
   commandCategory: "info",
-  usages: "uptime",
+  usages: "ابتيم",
   cooldowns: 5,
   dependencies: {
-    "moment-timezone": "latest",
-    pidusage: "latest",
+    "moment-timezone": "latest"
   },
 };
 
@@ -21,13 +20,13 @@ module.exports.run = async ({ api, event }) => {
   try {
     const timeStart = performance.now();
 
-    let cpuPercent = 0;
-    let ramMB = 0;
-    try {
-      const usage = await pidusage(process.pid);
-      cpuPercent = usage.cpu.toFixed(1);
-      ramMB = (usage.memory / 1024 / 1024).toFixed(1);
-    } catch (e) {}
+    const totalRamMB = (os.totalmem() / 1024 / 1024).toFixed(0);
+    const freeRamMB  = (os.freemem()  / 1024 / 1024).toFixed(0);
+    const usedRamMB  = (totalRamMB - freeRamMB).toFixed(0);
+    const ramPercent = ((usedRamMB / totalRamMB) * 100).toFixed(1);
+
+    const cpuLoad   = os.loadavg()[0];
+    const cpuPercent = Math.min((cpuLoad * 25), 100).toFixed(1);
 
     const timeEnd = performance.now();
     const ping = Math.round(timeEnd - timeStart);
@@ -48,8 +47,8 @@ module.exports.run = async ({ api, event }) => {
     const currentTime = now.format("hh:mm:ss A");
     const currentDate = now.format("DD/MM/YYYY");
 
-    const totalCmds = global.client?.commands?.size || 0;
-    const totalUsers = global.data?.allUserID?.length || 0;
+    const totalCmds   = global.client?.commands?.size || 0;
+    const totalUsers  = global.data?.allUserID?.length || 0;
     const totalGroups = global.data?.allThreadID?.length || 0;
 
     const bar = (value, max, length = 10) => {
@@ -58,7 +57,7 @@ module.exports.run = async ({ api, event }) => {
     };
 
     const cpuBar = bar(parseFloat(cpuPercent), 100);
-    const ramBar = bar(parseFloat(ramMB), 512);
+    const ramBar = bar(parseFloat(usedRamMB), parseFloat(totalRamMB));
 
     const msg =
 `🌙 حالة البوت 🌙
@@ -72,7 +71,7 @@ module.exports.run = async ({ api, event }) => {
 
 🖥️ الموارد
   المعالج  : [${cpuBar}] ${cpuPercent}%
-  الذاكرة  : [${ramBar}] ${ramMB} MB
+  الذاكرة  : [${ramBar}] ${usedRamMB}/${totalRamMB} MB
 
 📊 الإحصائيات
   الأوامر  : ${totalCmds} أمر

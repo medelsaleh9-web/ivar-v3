@@ -1,5 +1,5 @@
 const { spawn } = require("child_process");
-const { readFileSync } = require("fs-extra");
+const { readFileSync } = require("fs");
 const http = require("http");
 const axios = require("axios");
 const semver = require("semver");
