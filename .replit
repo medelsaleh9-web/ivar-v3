@@ -1,7 +1,7 @@
 run = ["bash", "main.sh"]
 
 entrypoint = "main.sh"
-modules = ["nodejs-20"]
+modules = ["nodejs-20", "python-3.11"]
 
 [nix]
 channel = "stable-22_11"

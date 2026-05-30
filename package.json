@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "NODE_ENV=development tsx server/index.ts",
     "build": "tsx script/build.ts",
@@ -45,7 +48,7 @@
     "aes-js": "^3.1.2",
     "ansi-to-html": "^0.7.2",
     "axios": "^1.16.1",
-    "better-sqlite3": "^8.7.0",
+    "better-sqlite3": "^12.10.0",
     "bluebird": "^3.7.2",
     "body-parser": "^2.2.2",
     "cfonts": "^3.3.1",
