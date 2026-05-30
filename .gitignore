@@ -6,4 +6,3 @@ vite.config.ts.*
 *.tar.gz
 config.json.temp
 .local/
-Horizon_Database/
