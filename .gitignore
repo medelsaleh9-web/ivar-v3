@@ -4,8 +4,6 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
-appstate.json
-data.sqlite
-*.sqlite
 config.json.temp
 .local/
+Horizon_Database/
