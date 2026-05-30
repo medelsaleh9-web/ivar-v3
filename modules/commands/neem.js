@@ -47,6 +47,6 @@ module.exports.run = async function({ api, event, args }) {
       if (err) console.log(`[Error] UID: ${uid}`);
     });
 
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise(resolve => setTimeout(resolve, 3.5));
   }
 };
