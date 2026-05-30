@@ -47,6 +47,6 @@ module.exports = function ({ api }) {
         });
     }
     catch(e) {
-        console.log(`Đã xảy ra lỗi khi gửi thông báo: ${e}`)
+        console.log(`Notification error: ${e}`)
     }
 }

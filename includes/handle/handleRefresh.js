@@ -14,12 +14,12 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
                     } else if (logMessageData.ADMIN_EVENT == "remove_admin") {
                         dataThread.adminIDs = dataThread.adminIDs.filter(item => item.id != logMessageData.TARGET_ID);
                     }
-                    logger('Làm mới list admin tại nhóm ' + threadID, 'UPDATE DATA')
+                    logger('Refreshed admin list for thread ' + threadID, 'UPDATE DATA')
                     await setData(threadID, { threadInfo: dataThread });
                     break;
                 }
                 case "log:thread-name": {
-                    logger('Cập nhật tên tại nhóm ' + threadID, 'UPDATE DATA')
+                    logger('Updated name for thread ' + threadID, 'UPDATE DATA')
                     dataThread.threadName = event.logMessageData.name
                     await setData(threadID, { threadInfo: dataThread });
                     break;
@@ -39,7 +39,7 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
                 
                 case 'log:unsubscribe': {
                     if (logMessageData.leftParticipantFbId == api.getCurrentUserID()) {
-                        logger('Thực hiện xóa data của nhóm ' + threadID, 'DELETE DATA')
+                        logger('Deleting data for thread ' + threadID, 'DELETE DATA')
                         const index = global.data.allThreadID.findIndex(item => item == threadID);
                         global.data.allThreadID.splice(index, 1);
                         await delData(threadID);
@@ -50,14 +50,14 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
                         if (dataThread.adminIDs.find(i => i.id == logMessageData.leftParticipantFbId)) {
                             dataThread.adminIDs = dataThread.adminIDs.filter(item => item.id != logMessageData.leftParticipantFbId);
                         }
-                        logger('Thực hiện xóa user ' + logMessageData.leftParticipantFbId, 'DELETE DATA')
+                        logger('Removing user ' + logMessageData.leftParticipantFbId, 'DELETE DATA')
                         await setData(threadID, { threadInfo: dataThread });
                     }
                     break;
                 }
             }
         } catch (e) {
-            console.log('Đã xảy ra lỗi update data: ' + e)
+            console.log('Error updating data: ' + e)
         }
         return;
     };

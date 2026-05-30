@@ -344,7 +344,7 @@ function onBot({ models: botModel }) {
             }()
         console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         logger.loader(global.getText('mirai', 'finishLoadModule', global.client.commands.size, global.client.events.size)) 
-        logger.loader(`Thời gian khởi động: ${((Date.now() - global.client.timeStart) / 1000).toFixed()}s`)   
+        logger.loader(`Startup time: ${((Date.now() - global.client.timeStart) / 1000).toFixed()}s`)   
         logger.loader('===== [ ' + (Date.now() - global.client.timeStart) + 'ms ] =====')
         writeFileSync(global.client['configPath'], JSON['stringify'](global.config, null, 4), 'utf8') 
         unlinkSync(global['client']['configPath'] + '.temp');        
@@ -441,7 +441,7 @@ function onBot({ models: botModel }) {
         }
         catch (error) {
             global.client.loggedMongoose = false;
-            logger.loader('Không thể kết nối dữ liệu ANTI SETTING', '[ CONNECT ]');
+            logger.loader('Cannot connect ANTI SETTING database', '[ CONNECT ]');
             console.log(error);
         }
 

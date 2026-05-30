@@ -73,7 +73,7 @@ const RESTART_WINDOW = 5 * 60 * 1000;
 const MIN_RESTART_DELAY = 5000;
 
 function startBot(message) {
-    (message) ? logger(message, "BOT ĐANG KHỞI ĐỘNG") : "";
+    (message) ? logger(message, "BOT STARTING") : "";
 
     const now = Date.now();
     if (now - lastRestartTime > RESTART_WINDOW) {

@@ -18,7 +18,7 @@ module.exports.run = async function({ event, api }) {
         const file = path.join(dataPath, threadID + ".json");
         if (fs.existsSync(file)) {
             fs.removeSync(file);
-            console.log(`[checktt_remove] Đã xóa dữ liệu nhóm ${threadID} vì bot rời nhóm.`);
+            console.log(`[checktt_remove] Deleted thread data for ${threadID} (bot left).`);
         }
         return;
     }
@@ -42,5 +42,5 @@ module.exports.run = async function({ event, api }) {
     });
 
     fs.writeFileSync(file, JSON.stringify(threadData, null, 4));
-    console.log(`[checktt_remove] Đã xóa dữ liệu của ${usersLeft.length} người rời nhóm trong thread ${threadID}.`);
+    console.log(`[checktt_remove] Removed data for ${usersLeft.length} user(s) who left thread ${threadID}.`);
 };

@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "au9QtbXAsQSX3cFINYGcr"
+uri = "file://kako-bot.tar.gz"
+type = "unspecified"
+title = "kako-bot.tar.gz — البوت كامل بعد الإصلاح"

@@ -139,7 +139,7 @@ const dataAdbox = require('./../../modules/commands/cache/data.json');
        const timestamps = client.cooldowns.get(command.config.name);;
        const expirationTime = (command.config.cooldowns || 1) * 1000;
        if (timestamps.has(senderID) && dateNow < timestamps.get(senderID) + expirationTime) 
-     return api.setMessageReaction('😼', event.messageID, err => (err) ? logger('Đã có lỗi xảy ra khi thực thi setMessageReaction', 2) : '', !![]);
+     return api.setMessageReaction('😼', event.messageID, err => (err) ? logger('Error at setMessageReaction', 2) : '', !![]);
    var getText2;
    if (command.languages && typeof command.languages == 'object' && command.languages.hasOwnProperty(global.config.language))
      getText2 = (...values) => {

@@ -10,7 +10,7 @@ module.exports.getYoutube = async function(t, e, i) {
     const o = require("axios");
     if ("search" == e) {
       const e = require("youtube-search-api");
-      return t ? a = (await e.GetListByKeyword(t, !1, 6)).items : console.log("Thiếu dữ liệu")
+      return t ? a = (await e.GetListByKeyword(t, !1, 6)).items : console.log("Missing search query")
     }
     if ("getLink" == e) {
       var a = (await o.post("https://aiovideodl.ml/wp-json/aio-dl/video-data/", {

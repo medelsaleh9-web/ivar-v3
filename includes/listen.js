@@ -25,7 +25,7 @@ module.exports = function ({ api, models }) {
               const _ID = file.replace('.json', '');
               return _ADMINIDs.includes(_ID) || global.data.allThreadID.includes(_ID);
             });
-            console.log('Bắt đầu kiểm tra tương tác ngày mới');
+            console.log('Checking daily interaction data...');
             await new Promise(async resolve => {
                 for (const checkttFile of checkttData) {
                     const checktt = JSON.parse(fs.readFileSync(checkttDataPath + checkttFile));
@@ -63,7 +63,7 @@ module.exports = function ({ api, models }) {
 
             await new Promise(async resolve => {
                 if (day_now == 1) {
-                    console.log('Bắt đầu kiểm tra tương tác tuần mới');
+                    console.log('Checking weekly interaction data...');
                     for (const checkttFile of checkttData) {
                         const checktt = JSON.parse(fs.readFileSync(checkttDataPath + checkttFile));
                         let storage = [], count = 1;
