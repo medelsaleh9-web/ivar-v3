@@ -47,15 +47,15 @@ async function buildAll() {
   const externals = allDeps.filter((dep) => !allowlist.includes(dep));
 
   await esbuild({
-    entryPoints: ["server/index.ts"],
+    entryPoints: ["index.js"],
     platform: "node",
-    bundle: true,
+    bundle: false,
     format: "cjs",
-    outfile: "dist/index.cjs",
+    outfile: "dist/bot.cjs",
     define: {
       "process.env.NODE_ENV": '"production"',
     },
-    minify: true,
+    minify: false,
     external: externals,
     logLevel: "info",
   });
