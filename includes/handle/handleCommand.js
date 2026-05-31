@@ -21,7 +21,7 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
          let getDay = moment.tz("Asia/Ho_Chi_Minh").day();
          
    if(!global.data.allThreadID.includes(threadID) && !ADMINBOT.includes(senderID) && adminbot.adminPaseOnly == true) {
- return api.sendMessage("Admin bot mới dùng bot trong đoạn chat riêng!!", threadID, messageID)
+ return api.sendMessage("هذا الأمر متاح للمشرفين فقط!", threadID, messageID)
 }    
    if (!ADMINBOT.includes(senderID) && adminbot.adminOnly == true) {
      let threadUnlocked = false;
@@ -34,13 +34,13 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
      if (!threadUnlocked) return;
    }
     if (!NDH.includes(senderID) && !ADMINBOT.includes(senderID) && adminbot.ndhOnly == true) { 
-         return api.sendMessage('NDH mới có thể sử dụng bot', threadID, messageID)
+         return api.sendMessage('هذا البوت مخصص لـ NDH فقط', threadID, messageID)
 
        }
 const dataAdbox = require('./../../modules/commands/cache/data.json');
    var threadInf = (threadInfo.get(threadID) || await Threads.getInfo(threadID));
    const findd = threadInf.adminIDs.find(el => el.id == senderID);
-  if (dataAdbox.adminbox.hasOwnProperty(threadID) && dataAdbox.adminbox[threadID] == true && !ADMINBOT.includes(senderID) && !findd && event.isGroup == true && !NDH.includes(senderID) && !findd && event.isGroup == true) return api.sendMessage('Quản trị viên mới sử dụng được!!', event.threadID, event.messageID)
+  if (dataAdbox.adminbox.hasOwnProperty(threadID) && dataAdbox.adminbox[threadID] == true && !ADMINBOT.includes(senderID) && !findd && event.isGroup == true && !NDH.includes(senderID) && !findd && event.isGroup == true) return api.sendMessage('هذا الأمر متاح لمشرفي المجموعة فقط!', event.threadID, event.messageID)
   
   // === فحص القفل والحظر (Lock & Ban Check) ===
   try {
