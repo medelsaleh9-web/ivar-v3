@@ -14,7 +14,7 @@ async function buildAll() {
   await esbuild({
     entryPoints: ["index.js"],
     platform: "node",
-    bundle: false,
+    bundle: true,
     format: "cjs",
     outfile: "dist/bot.cjs",
     define: {
